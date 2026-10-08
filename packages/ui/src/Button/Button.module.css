@@ -1,0 +1,285 @@
+/*
+ * Button anatomy
+ *
+ * .button
+ *   .material — opaque base color and optional side sheen
+ *   .finish   — opaque edge, highlights, depth and elevation
+ *   .content  — icons and label
+ *
+ * Tokens describe what the button is: geometry, background and content.
+ * This file describes how that material behaves: edge, light and depth.
+ */
+.button {
+  /* Geometry */
+  --button-height: var(--component-button-height);
+  --button-padding-x: var(--component-button-paddingX);
+  --button-padding-icon: var(--component-button-paddingIcon);
+  --button-gap: var(--component-button-gap);
+  --button-radius: var(--component-button-radius);
+  --button-icon-size: var(--component-button-iconSize);
+  --button-font-size: var(--component-button-fontSize);
+
+  /* Material inputs. Variants only replace these values. */
+  --material-bg: var(--component-button-soft-surface);
+  --material-content: var(--component-button-soft-content);
+  --material-side-light: transparent;
+  --material-content-shadow: none;
+
+  /*
+   * Material engine output. Each color remains derived from --material-bg.
+   * light-dark() selects an optical recipe from the inherited color-scheme.
+   */
+  --material-edge: light-dark(
+    color-mix(in oklch, var(--material-bg), black 10%),
+    color-mix(in oklch, var(--material-bg), black 75%)
+  );
+  --material-highlight: inset 0 1px 0 0
+    light-dark(
+      color-mix(in srgb, white 90%, transparent),
+      color-mix(in srgb, white 20%, transparent)
+    );
+  --material-reflection: 0 0 transparent;
+  --material-depth: 0 0 transparent;
+  --material-elevation: 0 1px 2px color-mix(in srgb, black 7%, transparent);
+
+  --button-transition-duration: 160ms;
+  --button-transition-easing: cubic-bezier(0.2, 0, 0, 1);
+
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  min-height: var(--button-height);
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--button-padding-x);
+  border: 0;
+  border-radius: var(--button-radius);
+  background: transparent;
+  color: var(--material-content);
+  cursor: pointer;
+  font-family: var(--core-font-family-sans);
+  font-size: var(--button-font-size);
+  font-weight: var(--component-button-fontWeight-default);
+  line-height: var(--component-button-lineHeight);
+  transition: color var(--button-transition-duration) var(--button-transition-easing);
+}
+
+.material,
+.finish {
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.material {
+  background: var(--material-bg);
+  transition: background-color var(--button-transition-duration) var(--button-transition-easing);
+}
+
+.finish {
+  border: 1px solid var(--material-edge);
+  box-shadow:
+    var(--material-highlight),
+    var(--material-reflection),
+    var(--material-depth),
+    var(--material-elevation);
+  transition:
+    border-color var(--button-transition-duration) var(--button-transition-easing),
+    box-shadow var(--button-transition-duration) var(--button-transition-easing);
+}
+
+/* Content geometry */
+.button[data-icon-leading="true"] {
+  padding-left: var(--button-padding-icon);
+}
+
+.button[data-icon-trailing="true"] {
+  padding-right: var(--button-padding-icon);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  width: var(--button-content-width, auto);
+  white-space: nowrap;
+}
+
+.label {
+  flex: var(--button-label-flex, 0 1 auto);
+  min-width: 0;
+  text-shadow: var(--material-content-shadow);
+}
+
+.icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  filter: drop-shadow(var(--material-content-shadow));
+}
+
+.leadingIcon {
+  opacity: var(--button-leading-icon-opacity, 1);
+}
+
+.trailingIcon {
+  opacity: var(--button-trailing-icon-opacity, 0.7);
+}
+
+.icon > *,
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Solid material */
+.button[data-variant="solid"] {
+  font-weight: var(--component-button-fontWeight-solid);
+  --material-bg: var(--component-button-solid-surface);
+  --material-content: var(--component-button-solid-content);
+  --material-edge: light-dark(
+    color-mix(in oklch, var(--material-bg), black 18%),
+    color-mix(in oklch, var(--material-bg), black 75%)
+  );
+  --material-side-light: color-mix(in srgb, white 15%, transparent);
+  --material-content-shadow: 0 1px 2px
+    color-mix(in srgb, var(--core-color-black) 15%, transparent);
+  --material-highlight: inset 0 15px 15px
+    color-mix(in srgb, var(--core-color-white) 10%, transparent);
+  --material-reflection: inset 0 1px 0 0
+    color-mix(in srgb, var(--core-color-white) 20%, transparent);
+  --material-elevation: 0 1px 2px
+    color-mix(in srgb, var(--core-color-black) 20%, transparent);
+}
+
+.button[data-variant="solid"] .material {
+  background:
+    linear-gradient(
+      to right,
+      var(--material-side-light) 0%,
+      transparent 25%,
+      transparent 75%,
+      var(--material-side-light) 100%
+    ),
+    var(--material-bg);
+}
+
+.button[data-variant="solid"]:not(:disabled):hover {
+  --material-edge: light-dark(
+    color-mix(in oklch, var(--material-bg), black 15%),
+    color-mix(in oklch, var(--material-bg), black 75%)
+  );
+  --material-highlight: inset 0 15px 15px
+    color-mix(in srgb, var(--core-color-white) 15%, transparent);
+  --material-reflection: inset 0 -15px 15px
+    color-mix(in srgb, var(--core-color-white) 15%, transparent);
+  --material-elevation: 0 2px 4px
+    color-mix(in srgb, var(--core-color-black) 20%, transparent);
+}
+
+.button[data-variant="solid"]:not(:disabled):active {
+  --button-transition-duration: 80ms;
+  --material-edge: light-dark(
+    color-mix(in oklch, var(--material-bg), black 30%),
+    color-mix(in oklch, var(--material-bg), black 75%)
+  );
+  --material-highlight: 0 0 transparent;
+  --material-reflection: 0 0 transparent;
+  --material-depth: inset 0 5px 10px 5px
+    color-mix(in srgb, var(--core-color-black) 30%, transparent);
+  --material-elevation: 0 0 transparent;
+}
+
+/* Soft material */
+.button[data-variant="soft"]:not(:disabled):hover {
+  --material-edge: light-dark(
+    color-mix(in oklch, var(--material-bg), black 5%),
+    color-mix(in oklch, var(--material-bg), black 75%)
+  );
+  --material-highlight: inset 0 15px 15px
+    light-dark(
+      color-mix(in srgb, white 50%, transparent),
+      color-mix(in srgb, white 10%, transparent)
+    );
+  --material-reflection: inset 0 -15px 15px
+    light-dark(
+      color-mix(in srgb, white 50%, transparent),
+      color-mix(in srgb, white 10%, transparent)
+    );
+  --material-elevation: 0 2px 4px
+    color-mix(in srgb, var(--core-color-black) 7%, transparent);
+}
+
+.button[data-variant="soft"]:not(:disabled):active {
+  --button-transition-duration: 80ms;
+  --material-edge: light-dark(
+    color-mix(in oklch, var(--material-bg), black 5%),
+    color-mix(in oklch, var(--material-bg), black 75%)
+  );
+  --material-highlight: 0 0 transparent;
+  --material-reflection: 0 0 transparent;
+  --material-depth: inset 0 5px 10px 5px
+    light-dark(
+      color-mix(in srgb, black 10%, transparent),
+      color-mix(in srgb, black 30%, transparent)
+    );
+  --material-elevation: 0 0 transparent;
+}
+
+/* Ghost has no material at rest and uses state layers for interaction. */
+.button[data-variant="ghost"] {
+  --material-bg: transparent;
+  --material-edge: transparent;
+  --material-highlight: 0 0 transparent;
+  --material-reflection: 0 0 transparent;
+  --material-depth: 0 0 transparent;
+  --material-elevation: 0 0 transparent;
+}
+
+.button[data-variant="ghost"]:not(:disabled):hover {
+  --material-bg: var(--state-hover);
+}
+
+.button[data-variant="ghost"]:not(:disabled):active {
+  --button-transition-duration: 80ms;
+  --material-bg: var(--state-pressed);
+}
+
+/* Disabled remains a material state rather than whole-component opacity. */
+.button:disabled {
+  --material-edge: color-mix(in oklch, var(--material-bg), black 5%);
+  --material-side-light: transparent;
+  --material-content-shadow: none;
+  --material-highlight: 0 0 transparent;
+  --material-reflection: 0 0 transparent;
+  --material-depth: 0 0 transparent;
+  --material-elevation: 0 0 transparent;
+
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.button[data-variant="ghost"]:disabled {
+  --material-bg: transparent;
+  --material-edge: transparent;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    --button-transition-duration: 0ms;
+  }
+}

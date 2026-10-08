@@ -1,0 +1,127 @@
+.control {
+  --selection-control-size: var(--component-selection-control-size-md);
+
+  appearance: none;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: var(--selection-control-size);
+  height: var(--selection-control-size);
+  margin: 0;
+  display: inline-grid;
+  place-items: center;
+  vertical-align: middle;
+  border: var(--component-selection-control-border-width) solid var(--component-selection-control-border-color);
+  background: var(--component-selection-control-surface-default);
+  color: var(--component-selection-control-content-selected);
+  cursor: pointer;
+  transition:
+    background-color var(--component-selection-control-motion-duration) ease,
+    border-color var(--component-selection-control-motion-duration) ease,
+    box-shadow var(--component-selection-control-motion-duration) ease;
+}
+
+.control:hover:not(:disabled) {
+  background:
+    linear-gradient(var(--component-selection-control-surface-hover), var(--component-selection-control-surface-hover)),
+    var(--component-selection-control-surface-default);
+}
+
+.control:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--component-selection-control-focus-ringWidth)
+    color-mix(
+      in srgb,
+      var(--component-selection-control-focus-color) var(--component-selection-control-focus-opacity),
+      transparent
+    );
+}
+
+.control[aria-invalid="true"] {
+  border-color: var(--component-selection-control-border-invalidColor);
+}
+
+.control:checked,
+.control[data-indeterminate="true"] {
+  border-width: 0;
+  background: var(--component-selection-control-surface-selected);
+}
+
+.control:checked:hover:not(:disabled),
+.control[data-indeterminate="true"]:hover:not(:disabled) {
+  background:
+    linear-gradient(var(--component-selection-control-surface-hover), var(--component-selection-control-surface-hover)),
+    var(--component-selection-control-surface-selected);
+}
+
+.control:disabled {
+  cursor: not-allowed;
+  opacity: var(--component-selection-control-disabled-opacity);
+}
+
+.checkbox {
+  --selection-control-checkbox-mark-size: var(--component-selection-control-checkbox-markSize-md);
+  --selection-control-checkbox-indeterminate-width: var(--component-selection-control-checkbox-indeterminate-width-md);
+
+  border-radius: var(--component-selection-control-checkbox-radius);
+}
+
+.checkbox[data-size="sm"] {
+  --selection-control-size: var(--component-selection-control-size-sm);
+  --selection-control-checkbox-mark-size: var(--component-selection-control-checkbox-markSize-sm);
+  --selection-control-checkbox-indeterminate-width: var(--component-selection-control-checkbox-indeterminate-width-sm);
+}
+
+.checkbox:checked::after {
+  content: "";
+  width: var(--selection-control-checkbox-mark-size);
+  height: var(--selection-control-checkbox-mark-size);
+  background: currentColor;
+  -webkit-mask: url("./checkmark.svg") center / var(--selection-control-checkbox-mark-size) var(--selection-control-checkbox-mark-size) no-repeat;
+  mask: url("./checkmark.svg") center / var(--selection-control-checkbox-mark-size) var(--selection-control-checkbox-mark-size) no-repeat;
+}
+
+.checkbox[data-indeterminate="true"]::after {
+  content: "";
+  width: var(--selection-control-checkbox-indeterminate-width);
+  height: var(--component-selection-control-checkbox-indeterminate-height);
+  border-radius: var(--component-selection-control-checkbox-indeterminate-radius);
+  background: currentColor;
+  -webkit-mask: none;
+  mask: none;
+}
+
+.radio {
+  --selection-control-size: var(--component-selection-control-size-md);
+  border-radius: var(--component-selection-control-radio-radius);
+}
+
+.radio:checked::after {
+  content: "";
+  width: var(--component-selection-control-radio-markSize);
+  height: var(--component-selection-control-radio-markSize);
+  border-radius: var(--component-selection-control-radio-radius);
+  background: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .control {
+    forced-color-adjust: none;
+    border-color: ButtonText;
+    background: Canvas;
+    color: HighlightText;
+  }
+
+  .control:checked,
+  .control[data-indeterminate="true"] {
+    background: Highlight;
+  }
+
+  .control:disabled {
+    border-color: GrayText;
+    color: GrayText;
+  }
+}

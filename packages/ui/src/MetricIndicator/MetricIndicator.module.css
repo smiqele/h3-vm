@@ -1,0 +1,59 @@
+.meter {
+  width: 100%;
+  height: var(--component-metric-indicator-meter-height);
+  overflow: hidden;
+  display: block;
+  flex: 1 1 auto;
+  background: var(--visualization-track);
+}
+
+.meter > span {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: left center;
+  background: var(--visualization-accent);
+}
+
+.ring {
+  width: var(--component-metric-indicator-ring-size);
+  height: var(--component-metric-indicator-ring-size);
+  display: block;
+  flex: 0 0 auto;
+  border-radius: var(--core-radius-full);
+  background: conic-gradient(
+    var(--visualization-accent) var(--metric-level),
+    var(--visualization-track) 0
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--component-metric-indicator-ring-thickness)),
+    #000 0
+  );
+}
+
+.activity {
+  width: var(--component-metric-indicator-activity-width);
+  height: var(--component-metric-indicator-activity-height);
+  padding-bottom: var(--component-metric-indicator-activity-paddingBottom);
+  display: flex;
+  align-items: end;
+  gap: var(--component-metric-indicator-activity-gap);
+  flex: 0 0 auto;
+}
+
+.activity i {
+  width: var(--component-metric-indicator-activity-barWidth);
+  display: block;
+  background: var(--visualization-track);
+}
+
+.activity i[data-active="true"] {
+  background: var(--visualization-accent);
+}
+
+.activity i:nth-child(1) { height: 7px; }
+.activity i:nth-child(2) { height: 4px; }
+.activity i:nth-child(3) { height: 9px; }
+.activity i:nth-child(4),
+.activity i:nth-child(5) { height: 4px; }

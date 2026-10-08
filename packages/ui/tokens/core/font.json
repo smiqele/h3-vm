@@ -1,0 +1,30 @@
+{
+  "family": {
+    "sans": {
+      "$type": "string",
+      "$value": "Manrope Variable"
+    },
+    "mono": {
+      "$type": "string",
+      "$value": "CoFo Sans Mono"
+    }
+  },
+  "weight": {
+    "regular": {
+      "$type": "number",
+      "$value": 400
+    },
+    "normal": {
+      "$type": "number",
+      "$value": 475
+    },
+    "medium": {
+      "$type": "number",
+      "$value": 500
+    },
+    "semibold": {
+      "$type": "number",
+      "$value": 600
+    }
+  }
+}

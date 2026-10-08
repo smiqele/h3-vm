@@ -1,0 +1,20 @@
+{
+  "strokeWeight": {
+    "$type": "number",
+    "$value": 1.25
+  },
+  "height": {
+    "sm": {
+      "$type": "number",
+      "$value": 16
+    },
+    "md": {
+      "$type": "number",
+      "$value": 20
+    },
+    "lg": {
+      "$type": "number",
+      "$value": 24
+    }
+  }
+}

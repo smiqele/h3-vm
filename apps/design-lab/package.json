@@ -1,0 +1,22 @@
+{
+  "name": "@cloud/design-lab",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 4173",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 4173",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloud/backlog": "*",
+    "@cloud/console-runtime": "*",
+    "@cloud/ui": "*",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource-variable/roboto-mono": "^5.3.0",
+    "mermaid": "11.17.2",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}

@@ -1,0 +1,43 @@
+version: 0.2.0
+
+fixtures:
+  fixture.vm.loading: { status: loading, data: null }
+  fixture.vm.empty: { status: success, data: [] }
+  fixture.vm.default:
+    status: success
+    metricsSummaries:
+      state:
+        ariaLabel: Состояние виртуальных машин
+        variant: borderless
+        items:
+          - id: instances
+            type: breakdown
+            label: Инстансы
+            value: "6"
+            segments:
+              - { tone: positive, value: "3", label: Работают }
+              - { tone: neutral, value: "2", label: Остановлены }
+              - { tone: danger, value: "1", label: С ошибкой }
+          - id: utilization
+            type: group
+            label: Загрузка
+            aside: В пределах нормы
+            asideTone: positive
+            asideIcon: check
+            items:
+              - { id: cpu, label: CPU, value: "43%" }
+              - { id: ram, label: RAM, value: "35%" }
+          - { id: disk, type: meter, appearance: text, label: Хранение, value: "1,7 ТБ из 1,9 ТБ", level: 0.895, aside: Заполнено на, asideTone: warning, asideIcon: triangle-alert }
+          - { id: accrued, type: value, label: Потребление, value: 18 420 ₽, aside: 1–18 сентября }
+    data:
+      - { id: VM-V9H2C4T5B, name: hot-server-name, status: running, statusChangedAt: 2026-09-03T10:00:00+03:00, network: production-subnet-a, subnetIp: 10.0.0.29, publicIp: 185.45.10.21, cpu: 8, cpuUtilization: 0.43, ramGb: 32, ramUtilization: 0.38, diskGb: 350, diskLimitGb: 400, image: Ubuntu 24.04 LTS, healthSignals: [{ text: Высокий исходящий трафик, tone: warning, icon: trending-up }, { text: Копия создана 2 ч. назад, tone: neutral, icon: archive }] }
+      - { id: VM-X7R8Q9L3P, name: cold-server-alpha, status: stopped, statusChangedAt: 2026-09-14T23:10:00+03:00, network: development-subnet-a, subnetIp: 10.0.0.35, cpu: 4, cpuUtilization: 0.08, ramGb: 16, ramUtilization: 0.22, diskGb: 250, diskLimitGb: 280, image: Debian 12, healthSignals: [{ text: Мониторинг приостановлен, tone: neutral, icon: network }, { text: Резервная копия актуальна, tone: neutral, icon: archive }] }
+      - { id: VM-J2K4N6M8Z, name: backup-node-21, status: error, statusChangedAt: 2026-09-15T02:10:00+03:00, network: storage-subnet-a, subnetIp: 10.0.0.42, cpu: 2, cpuUtilization: 0.31, ramGb: 8, ramUtilization: 0.45, diskGb: 100, diskLimitGb: 120, image: Rocky Linux 9, healthSignals: [{ text: Ошибка резервного копирования, tone: danger, icon: archive }, { text: Агент недоступен, tone: warning, icon: network }] }
+      - { id: VM-L5F7T9B0X, name: db-server-prim, status: running, statusChangedAt: 2026-09-10T17:40:00+03:00, network: database-subnet-a, subnetIp: 10.0.0.55, publicIp: 185.45.10.34, cpu: 6, cpuUtilization: 0.48, ramGb: 24, ramUtilization: 0.56, diskGb: 300, diskLimitGb: 500, image: Ubuntu 22.04 LTS }
+      - { id: VM-M3V1E4R9S, name: web-node-02, status: running, statusChangedAt: 2026-09-14T08:00:00+03:00, network: production-subnet-b, subnetIp: 10.0.0.23, cpu: 4, cpuUtilization: 0.52, ramGb: 16, ramUtilization: 0.46, diskGb: 300, diskLimitGb: 340, image: Debian 12, healthSignals: [{ text: Требуется перезагрузка, tone: warning, icon: triangle-alert }, { text: Копия создана 6 ч. назад, tone: neutral, icon: archive }] }
+      - { id: VM-Q8Z6P2L7N, name: cache-server-11, status: stopped, statusChangedAt: 2026-09-12T12:30:00+03:00, network: database-subnet-a, subnetIp: 10.0.0.31, cpu: 4, cpuUtilization: 0.12, ramGb: 16, ramUtilization: 0.34, diskGb: 250, diskLimitGb: 260, image: AlmaLinux 9, healthSignals: [{ text: Копия устарела, tone: warning, icon: archive }, { text: Диск почти заполнен, tone: warning, icon: triangle-alert }] }
+  fixture.vm.error: { status: error, error: { code: service_unavailable } }
+  fixture.vm.create-ready: { status: ready, values: { region: ru-1, cpu: 2, ramGb: 4, diskGb: 50 } }
+  fixture.vm.create-submitting: { status: submitting }
+  fixture.vm.create-invalid: { status: invalid, errors: { name: required } }
+  fixture.vm.create-error: { status: error, error: { code: quota_exceeded } }

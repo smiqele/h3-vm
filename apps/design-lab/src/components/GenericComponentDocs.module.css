@@ -1,0 +1,5 @@
+.example { width: 100%; min-width: 0; display: flex; align-items: center; justify-content: center; }
+.rules { max-width: 760px; padding-left: 20px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+.rules li + li { margin-top: 8px; }
+.pills, .tokens { display: flex; flex-wrap: wrap; gap: 8px; }
+.pills code, .tokens code { padding: 6px 9px; border: 1px solid var(--border-thin); border-radius: var(--core-radius-md); background: var(--surface-subtle); font-size: 12px; }

@@ -1,0 +1,95 @@
+.section {
+  position: relative;
+  height: 692px;
+  padding: 80px 40px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background: #1b1b1b;
+  color: #fff;
+  font-family: var(--font-pragmatica), Arial, sans-serif;
+}
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1432px);
+  height: 532px;
+  margin: 0 auto;
+  padding: 120px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.content h2 {
+  margin: 0;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: -1.28px;
+}
+.content p {
+  width: min(630px, 100%);
+  margin: 40px 0 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -.48px;
+}
+.actions {
+  margin-top: 40px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.button.button {
+  width: auto;
+  --component-button-height: 40px;
+  --component-button-paddingX: 16px;
+  --component-button-radius: 10px;
+  --component-button-fontSize: 15px;
+  --component-button-lineHeight: 15px;
+  --component-button-fontWeight-solid: 600;
+  --component-button-fontWeight-default: 600;
+  --core-font-family-sans: "Manrope Variable", Arial, sans-serif;
+  --core-color-black: #000;
+  --core-color-white: #fff;
+}
+.primary {
+  --component-button-solid-surface: #5b37ed;
+  --component-button-solid-content: #fff;
+}
+.secondary {
+  --component-button-soft-surface: #282828;
+  --component-button-soft-content: #fff;
+}
+.art {
+  position: absolute;
+  z-index: 0;
+  width: 1082px;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+.art video { display: none; }
+.art canvas { display: block; width: 100%; height: auto; }
+.artLeft { top: -110px; left: -435px; transform: rotate(29.34deg); }
+.artRight { top: -95px; right: -470px; transform: rotate(153.8deg) scaleY(-1); }
+@media (max-width: 900px) {
+  .section { height: auto; min-height: 620px; padding-inline: 24px; }
+  .content { height: auto; min-height: 460px; padding-block: 110px; }
+  .content h2 { font-size: clamp(42px, 8vw, 58px); line-height: 1; }
+  .content p { font-size: 20px; line-height: 26px; }
+  .art { width: 850px; opacity: .65; }
+  .artLeft { left: -480px; }
+  .artRight { right: -520px; }
+}
+@media (max-width: 640px) {
+  .section { min-height: 620px; padding: 60px 16px; }
+  .content { min-height: 500px; padding-block: 96px; }
+  .content h2 { max-width: 420px; font-size: 40px; line-height: 42px; }
+  .content p { margin-top: 30px; font-size: 18px; line-height: 24px; }
+  .actions { width: 100%; margin-top: 30px; padding-top: 10px; flex-direction: column; gap: 12px; }
+  .button.button { width: min(100%, 320px); }
+}

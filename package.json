@@ -1,0 +1,32 @@
+{
+  "name": "cloud-console-design-lab",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev:design-lab",
+    "dev:brand": "npm run dev --workspace @cloud/brand",
+    "dev:design-lab": "npm run packages:generate && npm run tokens:generate && npm run dev --workspace @cloud/design-lab",
+    "storybook": "npm run packages:generate && npm run tokens:generate && npm run storybook --workspace @cloud/storybook",
+    "build:storybook": "npm run packages:generate && npm run tokens:generate && npm run build --workspace @cloud/storybook",
+    "dev:prototypes": "npm run packages:generate && npm run tokens:generate && npm run dev --workspace @cloud/prototypes",
+    "build": "npm run packages:generate && npm run tokens:generate && npm run build --workspace @cloud/design-lab && npm run build --workspace @cloud/prototypes && npm run build --workspace @cloud/brand",
+    "packages:generate": "node scripts/generate-package-data.mjs",
+    "tokens:generate": "node scripts/generate-token-css.mjs",
+    "docs:check": "node scripts/validate-component-docs.mjs",
+    "check": "npm run packages:generate && npm run tokens:generate && npm run typecheck --workspace @cloud/design-lab && npm run typecheck --workspace @cloud/prototypes && npm run typecheck --workspace @cloud/brand && node scripts/validate-specs.mjs && npm run docs:check && node scripts/check-contrast.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest",
+    "yaml": "latest"
+  },
+  "overrides": {
+    "lodash-es": "4.18.1"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "hover": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.4}",
+      "dark": "{core.color.alpha.white.6}"
+    }
+  },
+  "selected": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.6}",
+      "dark": "{core.color.alpha.white.8}"
+    }
+  },
+  "pressed": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.10}",
+      "dark": "{core.color.alpha.white.12}"
+    }
+  },
+  "disabled": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.2}",
+      "dark": "{core.color.alpha.white.3}"
+    }
+  }
+}

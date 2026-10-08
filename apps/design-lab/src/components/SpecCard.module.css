@@ -1,0 +1,7 @@
+.card { padding: 22px; border: 1px solid var(--border-default); border-radius: var(--core-radius-2xl); background: var(--surface-subtle); }
+.card h2 { margin: 12px 0 18px; font-size: 21px; }
+.meta { display: flex; justify-content: space-between; gap: 12px; color: var(--text-tertiary); font-size: 12px; }
+.meta span { padding: 3px 7px; border: 1px solid var(--core-purple-500); color: var(--core-purple-500); border-radius: 999px; }
+.meta span[data-status="production"] { color: var(--core-violet-400); border-color: var(--core-violet-400); }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tags code { padding: 5px 8px; border: 1px solid var(--border-default); border-radius: 7px; background: var(--surface-muted); color: var(--text-secondary); }

@@ -1,0 +1,4 @@
+.preview { width: 100%; }
+.variants { display: grid; gap: var(--core-spacing-32); }
+.variants article { display: grid; gap: var(--core-spacing-12); }
+.variants h3, .variants p { margin: 0; }

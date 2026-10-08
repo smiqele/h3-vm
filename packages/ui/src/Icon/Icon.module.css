@@ -1,0 +1,23 @@
+.icon {
+  width: var(--core-icon-height-md);
+  height: var(--core-icon-height-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: currentColor;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: var(--core-icon-strokeWeight);
+}
+
+.icon svg :is(path, line, polyline, polygon, circle, ellipse, rect) {
+  vector-effect: non-scaling-stroke;
+}
+
+.icon[data-size="sm"] { width: var(--core-icon-height-sm); height: var(--core-icon-height-sm); }
+.icon[data-size="lg"] { width: var(--core-icon-height-lg); height: var(--core-icon-height-lg); }
+.icon[data-size="inherit"] { width: 100%; height: 100%; }

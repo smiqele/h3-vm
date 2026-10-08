@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "CoFo Sans Mono";
+  src: local("CoFo Sans Mono"), local("CoFo Sans Mono VF Trial"), local("CoFoSansMonoVF-Trial");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body, #storybook-root { min-height: 100%; margin: 0; }
+body { font-family: var(--core-font-family-sans), ui-sans-serif, sans-serif; }
+
+.storybook-preview {
+  min-height: 100vh;
+  padding: 32px;
+  background: var(--background-app);
+  color: var(--text-primary);
+}
+
+.storybook-preview[data-fullscreen="true"] { padding: 0; }
+.story-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.story-column { min-width: min(560px, calc(100vw - 64px)); display: grid; gap: 20px; }
+.story-field { min-height: 44px; display: flex; align-items: center; gap: 10px; }
+.story-field > span { color: var(--text-secondary); font-size: 14px; }
+.story-panel { width: min(840px, calc(100vw - 64px)); }
+.story-shell { width: min(1200px, 100vw); min-height: 640px; }
+.story-sidebar { height: 100%; padding: 12px 8px; background: var(--surface-subtle); }
+.story-aside { padding: 24px; color: var(--text-secondary); }
+.story-content { padding: 0 24px 80px; }

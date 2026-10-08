@@ -1,0 +1,57 @@
+version: 0.3.0
+
+screens:
+  - id: screen.compute.vm.list
+    status: prototype
+    title: Виртуальные машины
+    route: /compute/vms
+    resource: resource.compute.vm
+    pattern: pattern.resource-list
+    blocks:
+      - id: header
+        component: component.page-header
+        props: { primaryAction: operation.compute.vm.create, secondaryAction: cli }
+      - id: summary-state
+        component: component.metrics-summary
+        props: { dataKey: state }
+      - id: table
+        component: component.data-table
+        props:
+          selection: multiple
+          selectionColumnId: name
+          searchFields: [name, id, network, subnetIp, publicIp]
+          statusField: status
+          statusOptions: [running, stopped, creating, error]
+          columns:
+            - { field: name, label: Имя, kind: link, href: "/compute/vms/{id}", copyable: true, sortable: true, width: 180, inset: compact, pinned: start }
+            - { field: status, label: Статус, kind: status, statusResource: virtual-machine, sortable: true, width: 140, inset: compact }
+            - { field: id, label: ID, kind: text, copyable: true, width: 170, inset: compact }
+            - { field: network, label: Подсеть, kind: text, copyable: true, width: 160 }
+            - { field: subnetIp, label: IP подсети, kind: text, copyable: true, width: 132 }
+            - { field: publicIp, label: Публичный IP, kind: text, copyable: true, width: 132 }
+            - { field: cpu, label: vCPU, kind: text, unit: vCPU, sortable: true, width: 120 }
+            - { field: ramGb, label: RAM, kind: text, unit: ГБ RAM, sortable: true, width: 120 }
+            - { field: diskGb, label: Диск, kind: meter, limitField: diskLimitGb, unit: ГБ, metricLabel: Место на диске, sortable: true, width: 180 }
+            - { field: image, label: Образ, kind: text, width: 180 }
+    states:
+      loading: fixture.vm.loading
+      empty: fixture.vm.empty
+      populated: fixture.vm.default
+      error: fixture.vm.error
+    documentation: domains/compute/virtual-machines
+
+  - id: screen.compute.vm.create
+    status: prototype
+    title: Создание виртуальной машины
+    route: /compute/vms/create
+    resource: resource.compute.vm
+    pattern: pattern.resource-create
+    blocks:
+      - { id: header, component: component.page-header }
+      - { id: form, component: component.form, props: { fields: [name, region, cpu, ramGb, diskGb] } }
+    states:
+      ready: fixture.vm.create-ready
+      submitting: fixture.vm.create-submitting
+      validation-error: fixture.vm.create-invalid
+      api-error: fixture.vm.create-error
+    documentation: domains/compute/virtual-machines

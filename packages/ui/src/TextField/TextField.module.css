@@ -1,0 +1,5 @@
+.field { display: grid; gap: 8px; color: var(--text-secondary); }
+.field input { min-height: 42px; padding: 0 12px; border: 1px solid var(--border-subtle); border-radius: var(--core-radius-lg); background: var(--surface-default); color: var(--text-primary); font: inherit; }
+.field input:focus-visible { outline: 3px solid var(--border-focus); outline-offset: 1px; }
+.field input[aria-invalid="true"] { border: 2px solid var(--feedback-danger-border); }
+.field small { color: var(--feedback-danger-text); }

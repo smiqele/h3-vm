@@ -1,0 +1,15 @@
+{
+  "height": { "$type": "number", "$value": "{core.size.48}" },
+  "paddingLeft": { "$type": "number", "$value": "{core.spacing.8}" },
+  "paddingRight": { "$type": "number", "$value": "{core.spacing.6}" },
+  "gap": { "$type": "number", "$value": "{core.spacing.8}" },
+  "radius": { "$type": "number", "$value": "{core.radius.lg}" },
+  "iconSize": { "$type": "number", "$value": "{core.icon.height.sm}" },
+  "serviceText": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.purple.600}",
+      "dark": "{core.color.purple.200}"
+    }
+  }
+}

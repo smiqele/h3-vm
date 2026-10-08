@@ -1,0 +1,67 @@
+.contextPath {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--core-font-family-sans);
+  font-size: var(--core-text-label-base-fontSize);
+  font-weight: var(--core-font-weight-medium);
+  line-height: var(--core-text-label-base-lineHeight);
+  letter-spacing: var(--core-text-label-base-letterSpacing);
+}
+
+.contextPath ol {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-4);
+  overflow: hidden;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.contextPath li {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-4);
+}
+
+.itemText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ancestor {
+  flex: 0 1 auto;
+  color: var(--text-tertiary);
+}
+
+.ancestor a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ancestor a:hover {
+  color: var(--text-primary);
+}
+
+.current {
+  flex: 0 1 auto;
+  color: var(--text-primary);
+}
+
+.separator {
+  flex: 0 0 auto;
+  width: 2px;
+  height: 2px;
+  background: var(--text-tertiary);
+}
+
+.separator[data-pipe] {
+  width: auto;
+  height: auto;
+  padding-inline: var(--core-spacing-4);
+  background: none;
+  color: var(--text-tertiary);
+}

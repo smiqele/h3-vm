@@ -1,0 +1,16 @@
+.panel {
+  min-height: 100%;
+  padding: 26px var(--core-spacing-20);
+  display: grid;
+  align-content: start;
+  gap: var(--core-spacing-12);
+}
+
+.panel small {
+  color: var(--text-tertiary);
+}
+
+.panel code {
+  color: var(--text-secondary);
+  font-size: 12px;
+}

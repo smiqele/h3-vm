@@ -1,0 +1,5 @@
+{
+  "accent": { "$type": "color", "$value": { "light": "{core.color.violet.500}", "dark": "{core.color.violet.500}" } },
+  "track": { "$type": "color", "$value": { "light": "{core.color.alpha.black.10}", "dark": "{core.color.alpha.white.12}" } },
+  "muted": { "$type": "color", "$value": { "light": "{core.color.alpha.black.6}", "dark": "{core.color.alpha.white.8}" } }
+}

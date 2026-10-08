@@ -1,0 +1,21 @@
+{
+  "toolbar": {
+    "height": { "$type": "number", "$value": "{core.size.48}" },
+    "gap": { "$type": "number", "$value": "{core.spacing.12}" },
+    "paddingStart": { "$type": "number", "$value": "{core.spacing.8}" }
+  },
+  "header": {
+    "height": { "$type": "number", "$value": "{core.size.40}" }
+  },
+  "search": {
+    "height": { "$type": "number", "$value": "{core.control.height.xs}" },
+    "maxWidth": { "$type": "number", "$value": 320 },
+    "gap": { "$type": "number", "$value": "{core.spacing.12}" },
+    "paddingStart": { "$type": "number", "$value": "{core.spacing.4}" },
+    "paddingEnd": { "$type": "number", "$value": "{core.spacing.8}" },
+    "radius": { "$type": "number", "$value": "{core.radius.md}" }
+  },
+  "action": {
+    "width": { "$type": "number", "$value": 52 }
+  }
+}

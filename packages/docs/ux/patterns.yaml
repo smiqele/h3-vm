@@ -1,0 +1,37 @@
+version: 0.1.0
+
+patterns:
+  - id: pattern.resource-list
+    status: prototype
+    name: Список ресурсов
+    purpose: Найти ресурс, оценить состояние и перейти к действию.
+    components: [component.page-header, component.data-table]
+    requiredStates: [loading, empty, populated, error, forbidden]
+
+  - id: pattern.resource-create
+    status: prototype
+    name: Создание ресурса
+    purpose: Собрать параметры, проверить ограничения и запустить долгую операцию.
+    components: [component.page-header, component.form, component.inline-alert]
+    requiredStates: [ready, submitting, validation-error, api-error, quota-exceeded]
+
+  - id: pattern.error.field
+    status: prototype
+    name: Ошибка поля
+    scope: field
+    recovery: edit-input
+    components: [primitive.text-field]
+
+  - id: pattern.error.operation
+    status: prototype
+    name: Ошибка операции
+    scope: operation
+    recovery: retry-or-details
+    components: [component.inline-alert]
+
+  - id: pattern.error.quota
+    status: prototype
+    name: Превышение квоты
+    scope: constraint
+    recovery: change-request-or-request-quota
+    components: [component.inline-alert]

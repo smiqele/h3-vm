@@ -1,0 +1,79 @@
+.status {
+  --status-marker-color: var(--status-neutral);
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-width: 0;
+  gap: var(--component-status-gap);
+  color: var(--text-primary);
+  font-size: var(--component-status-fontSize);
+  line-height: var(--component-status-lineHeight);
+  vertical-align: middle;
+}
+
+.marker {
+  position: relative;
+  width: var(--component-status-indicatorSize);
+  height: var(--component-status-indicatorSize);
+  flex: 0 0 var(--component-status-indicatorSize);
+  display: inline-grid;
+  place-items: center;
+}
+
+.marker::after {
+  content: "";
+  width: var(--component-status-markerSize);
+  height: var(--component-status-markerSize);
+  box-sizing: border-box;
+  border-radius: var(--core-radius-full);
+  background: var(--status-marker-color);
+}
+
+.marker[data-icon]::after { display: none; }
+
+.markerIcon {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  color: var(--status-marker-color);
+}
+
+.label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.status[data-tone="positive"] { --status-marker-color: var(--status-positive); }
+.status[data-tone="progress"] { --status-marker-color: var(--status-progress); }
+.status[data-tone="warning"] { --status-marker-color: var(--status-warning); }
+.status[data-tone="danger"] { --status-marker-color: var(--status-danger); }
+.status[data-tone="unknown"] { --status-marker-color: var(--status-unknown); }
+.status[data-emphasis="secondary"] { color: var(--text-secondary); }
+
+.status[data-tone="unknown"] .marker::after {
+  border: 1px solid var(--status-marker-color);
+  background: transparent;
+}
+
+.status[data-animated] .marker::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--core-radius-full);
+  background: color-mix(in srgb, var(--status-marker-color) 10%, transparent);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status[data-animated] .marker::before { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .marker::after { background: CanvasText; }
+  .status[data-tone="unknown"] .marker::after { border-color: CanvasText; }
+}

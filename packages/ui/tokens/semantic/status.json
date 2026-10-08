@@ -1,0 +1,35 @@
+{
+  "positive": {
+    "$type": "color",
+    "$value": { "light": "{core.color.green.500}", "dark": "{core.color.green.500}" }
+  },
+  "neutral": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.400}",
+      "dark": "{core.color.gray.600}"
+    }
+  },
+  "progress": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.violet.500}",
+      "dark": "{core.color.violet.400}"
+    }
+  },
+  "warning": {
+    "$type": "color",
+    "$value": { "light": "{core.color.yellow.700}", "dark": "{core.color.yellow.400}" }
+  },
+  "danger": {
+    "$type": "color",
+    "$value": { "light": "{core.color.red.500}", "dark": "{core.color.red.500}" }
+  },
+  "unknown": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.400}",
+      "dark": "{core.color.gray.600}"
+    }
+  }
+}

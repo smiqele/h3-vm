@@ -1,0 +1,24 @@
+{
+  "height": {
+    "xs": {
+      "$type": "number",
+      "$value": 24
+    },
+    "sm": {
+      "$type": "number",
+      "$value": 28
+    },
+    "md": {
+      "$type": "number",
+      "$value": 32
+    },
+    "lg": {
+      "$type": "number",
+      "$value": 40
+    },
+    "xl": {
+      "$type": "number",
+      "$value": 48
+    }
+  }
+}

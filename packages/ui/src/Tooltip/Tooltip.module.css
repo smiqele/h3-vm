@@ -1,0 +1,29 @@
+.trigger { display: inline-flex; align-items: center; }
+
+.tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: min(280px, calc(100vw - 16px));
+  padding: var(--core-spacing-4) var(--core-spacing-8);
+  border-radius: var(--core-radius-md);
+  background: var(--component-tooltip-surface);
+  color: var(--component-tooltip-content);
+  font-family: var(--core-font-family-sans);
+  font-size: var(--core-text-caption-sm-fontSize);
+  font-weight: var(--core-font-weight-normal);
+  line-height: var(--core-text-caption-sm-lineHeight);
+  pointer-events: auto;
+  white-space: normal;
+}
+
+.tooltip[data-placement="top"] { transform: translate(-50%, -100%); }
+.tooltip[data-placement="bottom"] { transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .tooltip { animation: tooltip-in 120ms ease-out; }
+}
+
+@keyframes tooltip-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

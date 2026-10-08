@@ -1,0 +1,84 @@
+.textCell,
+.activityCell,
+.meterCell {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.textCell {
+  width: 100%;
+  min-height: 28px;
+}
+
+.textCell[data-size="compact"] {
+  min-height: 24px;
+}
+
+.valueGroup {
+  min-width: 0;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--core-spacing-2);
+}
+
+.valueGroup > a,
+.valueGroup > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textCell a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.textCell a:hover {
+  text-decoration: none;
+}
+
+.copyAction {
+  width: var(--component-icon-button-size-micro-diameter);
+  height: var(--component-icon-button-size-micro-diameter);
+  display: inline-flex;
+  flex: 0 0 var(--component-icon-button-size-micro-diameter);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Text widths put these buttons on fractional coordinates. Keep the same
+   compositing layer before and during the animated hover background. */
+.copyAction > button {
+  transform: translateZ(0);
+}
+
+.textCell:hover .copyAction,
+.textCell:focus-within .copyAction {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.activityCell,
+.meterCell {
+  gap: var(--core-spacing-8);
+}
+
+.meterCell {
+  width: 100%;
+  white-space: nowrap;
+}
+
+@media (hover: none) {
+  .copyAction {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}

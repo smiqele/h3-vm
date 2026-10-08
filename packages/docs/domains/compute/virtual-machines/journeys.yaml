@@ -1,0 +1,44 @@
+version: 0.1.0
+
+journeys:
+  - id: cjm.compute.vm.first-create
+    name: Первая виртуальная машина
+    actor: Администратор Workspace
+    goal: Создать работающую ВМ для приложения
+    stages:
+      - id: discover
+        name: Ориентация
+        touchpoint: screen.compute.vm.list
+        userGoal: Понять состояние ресурсов Workspace и найти создание ВМ
+        questions: [Хватает ли квоты?, Есть ли уже подходящая ВМ?]
+        emotion: neutral
+        signals: [resource-summary, empty-state]
+
+      - id: configure
+        name: Настройка
+        touchpoint: screen.compute.vm.create
+        userGoal: Выбрать конфигурацию без превышения квоты
+        questions: [Какой размер выбрать?, Сколько это будет стоить?]
+        emotion: uncertain
+        risks: [quota-exceeded, incompatible-configuration]
+
+      - id: wait
+        name: Развертывание
+        touchpoint: pattern.vm-status-transition
+        userGoal: Убедиться, что процесс идет и не требует действий
+        questions: [Сколько ждать?, Можно ли уйти со страницы?]
+        emotion: attentive
+        signals: [creating-status, progress-explanation]
+
+      - id: verify
+        name: Проверка результата
+        touchpoint: screen.compute.vm.list
+        userGoal: Найти созданную ВМ и убедиться, что она работает
+        questions: [Как подключиться?, Что делать при ошибке?]
+        emotion: positive
+        signals: [running-status, network-address]
+
+    successMetrics:
+      - create-flow-completion
+      - time-to-running
+      - quota-error-rate

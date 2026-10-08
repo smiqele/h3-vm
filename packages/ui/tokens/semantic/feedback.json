@@ -1,0 +1,22 @@
+{
+  "info": {
+    "surface": { "$type": "color", "$value": { "light": "{core.color.violet.50}", "dark": "{core.color.violet.900}" } },
+    "border": { "$type": "color", "$value": { "light": "{core.color.violet.300}", "dark": "{core.color.violet.700}" } },
+    "text": { "$type": "color", "$value": { "light": "{core.color.violet.700}", "dark": "{core.color.violet.200}" } }
+  },
+  "success": {
+    "surface": { "$type": "color", "$value": { "light": "{core.color.gray.50}", "dark": "{core.color.gray.900}" } },
+    "border": { "$type": "color", "$value": { "light": "{semantic.status.positive}", "dark": "{semantic.status.positive}" } },
+    "text": { "$type": "color", "$value": { "light": "{semantic.text.primary}", "dark": "{semantic.text.primary}" } }
+  },
+  "warning": {
+    "surface": { "$type": "color", "$value": { "light": "{core.color.yellow.50}", "dark": "{core.color.yellow.950}" } },
+    "border": { "$type": "color", "$value": { "light": "{semantic.status.warning}", "dark": "{semantic.status.warning}" } },
+    "text": { "$type": "color", "$value": { "light": "{semantic.text.primary}", "dark": "{semantic.text.primary}" } }
+  },
+  "danger": {
+    "surface": { "$type": "color", "$value": { "light": "{core.color.gray.50}", "dark": "{core.color.gray.900}" } },
+    "border": { "$type": "color", "$value": { "light": "{semantic.status.danger}", "dark": "{semantic.status.danger}" } },
+    "text": { "$type": "color", "$value": { "light": "{semantic.text.primary}", "dark": "{semantic.text.primary}" } }
+  }
+}

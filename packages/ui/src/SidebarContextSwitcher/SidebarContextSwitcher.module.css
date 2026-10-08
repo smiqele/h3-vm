@@ -1,0 +1,48 @@
+.switcher {
+  --button-height: var(--component-sidebar-context-switcher-height);
+  --button-padding-x: var(--component-sidebar-context-switcher-paddingRight);
+  --button-padding-icon: var(--component-sidebar-context-switcher-paddingLeft);
+  --button-gap: var(--component-sidebar-context-switcher-gap);
+  --button-radius: var(--component-sidebar-context-switcher-radius);
+  --button-icon-size: var(--component-sidebar-context-switcher-iconSize);
+  --button-font-size: var(--core-text-label-base-fontSize);
+  --button-content-width: 100%;
+  --button-label-flex: 1 1 auto;
+  --button-leading-icon-opacity: 0.3;
+  --button-trailing-icon-opacity: 0.3;
+
+  width: 100%;
+  text-align: left;
+}
+
+.content {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-8);
+}
+
+.names {
+  min-width: 0;
+  display: grid;
+  flex: 1 1 auto;
+  gap: var(--core-spacing-2);
+  line-height: var(--core-text-label-base-lineHeight);
+}
+
+.names > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project {
+  padding-left: var(--core-spacing-2);
+}
+
+.service {
+  flex: 0 0 auto;
+  color: var(--component-sidebar-context-switcher-serviceText);
+  font-weight: var(--core-font-weight-semibold);
+}

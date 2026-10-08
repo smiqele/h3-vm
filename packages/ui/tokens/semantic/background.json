@@ -1,0 +1,9 @@
+{
+  "app": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.0}",
+      "dark": "{core.color.gray.925}"
+    }
+  }
+}

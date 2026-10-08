@@ -1,0 +1,16 @@
+.hitAreaPreview {
+  display: grid;
+  justify-items: center;
+  gap: var(--core-spacing-8);
+}
+
+.hitAreaPreview > button {
+  outline: 1px dashed var(--border-default);
+  outline-offset: -1px;
+}
+
+.hitAreaPreview > span {
+  color: var(--text-secondary);
+  font-size: var(--core-text-caption-sm-fontSize);
+  line-height: var(--core-text-caption-sm-lineHeight);
+}

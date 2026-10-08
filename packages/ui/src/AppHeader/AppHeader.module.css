@@ -1,0 +1,31 @@
+.appHeader {
+  width: 100%;
+  min-width: 0;
+  height: var(--layout-appHeader-height);
+  padding-inline: var(--layout-content-inset);
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-12);
+  background: var(--surface-default);
+}
+
+.context {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.actions,
+.scrolledActions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-8);
+}
+
+.scrolledActions {
+  display: none;
+}
+
+.scrolledActions[data-visible] {
+  display: flex;
+}

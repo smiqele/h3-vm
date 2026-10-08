@@ -1,0 +1,44 @@
+{
+  "default": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.10}",
+      "dark": "{core.color.alpha.white.12}"
+    }
+  },
+  "thin": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.7}",
+      "dark": "{core.color.alpha.white.6}"
+    }
+  },
+  "subtle": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.6}",
+      "dark": "{core.color.alpha.white.8}"
+    }
+  },
+  "strong": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.alpha.black.18}",
+      "dark": "{core.color.alpha.white.20}"
+    }
+  },
+  "accent": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.violet.600}",
+      "dark": "{core.color.violet.500}"
+    }
+  },
+  "focus": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.violet.600}",
+      "dark": "{core.color.violet.400}"
+    }
+  }
+}

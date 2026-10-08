@@ -1,0 +1,15 @@
+{
+  "iconSize": { "$type": "number", "$value": "{core.icon.height.sm}" },
+  "radius": { "$type": "number", "$value": "{core.radius.lg}" },
+  "size": {
+    "default": {
+      "diameter": { "$type": "number", "$value": "{core.size.32}" }
+    },
+    "compact": {
+      "diameter": { "$type": "number", "$value": "{core.control.height.sm}" }
+    },
+    "micro": {
+      "diameter": { "$type": "number", "$value": "{core.size.24}" }
+    }
+  }
+}

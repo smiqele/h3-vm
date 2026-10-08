@@ -1,0 +1,16 @@
+{
+  "surface": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.1000}",
+      "dark": "{core.color.gray.1000}"
+    }
+  },
+  "content": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.50}",
+      "dark": "{core.color.gray.50}"
+    }
+  }
+}

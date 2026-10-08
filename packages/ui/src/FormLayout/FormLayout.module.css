@@ -1,0 +1,9 @@
+.form { width: min(640px, 100%); display: grid; gap: var(--core-spacing-24); }
+.body { display: grid; gap: var(--core-spacing-24); }
+.section { display: grid; gap: var(--core-spacing-16); }
+.section header { display: grid; gap: var(--core-spacing-4); }
+.section h2, .section p { margin: 0; }
+.section h2 { color: var(--text-primary); font-size: var(--core-text-body-lg-fontSize); line-height: var(--core-text-body-lg-lineHeight); }
+.section p { color: var(--text-secondary); font-size: var(--core-text-caption-md-fontSize); line-height: var(--core-text-caption-md-lineHeight); }
+.fields { display: grid; gap: var(--core-spacing-16); }
+.actions { padding-top: var(--core-spacing-16); display: flex; align-items: center; gap: var(--core-spacing-8); border-top: 1px solid var(--border-thin); }

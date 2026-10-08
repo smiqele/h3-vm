@@ -1,0 +1,22 @@
+{
+  "solid": {
+    "content": { "$type": "color", "$value": { "light": "{core.color.white}", "dark": "{core.color.white}" } },
+    "surface": { "$type": "color", "$value": { "light": "{semantic.surface.accent}", "dark": "{semantic.surface.accent}" } }
+  },
+  "soft": {
+    "content": { "$type": "color", "$value": { "light": "{semantic.text.primary}", "dark": "{semantic.text.primary}" } },
+    "surface": { "$type": "color", "$value": { "light": "{semantic.surface.muted}", "dark": "{semantic.surface.muted}" } }
+  },
+  "height": { "$type": "number", "$value": "{core.control.height.md}" },
+  "paddingX": { "$type": "number", "$value": "{core.spacing.12}" },
+  "paddingIcon": { "$type": "number", "$value": "{core.spacing.8}" },
+  "gap": { "$type": "number", "$value": 6 },
+  "radius": { "$type": "number", "$value": "{core.radius.lg}" },
+  "iconSize": { "$type": "number", "$value": "{core.icon.height.sm}" },
+  "fontSize": { "$type": "number", "$value": "{core.text.label.base.fontSize}" },
+  "fontWeight": {
+    "default": { "$type": "number", "$value": "{core.font.weight.medium}" },
+    "solid": { "$type": "number", "$value": "{core.font.weight.semibold}" }
+  },
+  "lineHeight": { "$type": "number", "$value": "{core.text.label.base.lineHeight}" }
+}

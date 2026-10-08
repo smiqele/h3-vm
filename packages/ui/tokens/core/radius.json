@@ -1,0 +1,34 @@
+{
+  "none": {
+    "$type": "number",
+    "$value": 0
+  },
+  "xs": {
+    "$type": "number",
+    "$value": 4
+  },
+  "sm": {
+    "$type": "number",
+    "$value": 6
+  },
+  "md": {
+    "$type": "number",
+    "$value": 8
+  },
+  "lg": {
+    "$type": "number",
+    "$value": 10
+  },
+  "xl": {
+    "$type": "number",
+    "$value": 12
+  },
+  "2xl": {
+    "$type": "number",
+    "$value": 16
+  },
+  "full": {
+    "$type": "number",
+    "$value": 999
+  }
+}

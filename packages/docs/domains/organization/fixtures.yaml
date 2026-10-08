@@ -1,0 +1,6 @@
+version: 0.2.0
+
+fixtures:
+  fixture.context.default:
+    workspace: { id: workspace.acme, name: Acme Corp }
+    project: { id: project.production, name: Production, workspaceId: workspace.acme }

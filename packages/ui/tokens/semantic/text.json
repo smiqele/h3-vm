@@ -1,0 +1,41 @@
+{
+  "primary": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.700}",
+      "dark": "{core.color.gray.250}"
+    }
+  },
+  "secondary": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.600}",
+      "dark": "{core.color.gray.300}"
+    }
+  },
+  "tertiary": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.600}",
+      "dark": "{core.color.gray.400}"
+    }
+  },
+  "disabled": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.300}",
+      "dark": "{core.color.gray.700}"
+    }
+  },
+  "inverse": {
+    "$type": "color",
+    "$value": {
+      "light": "{core.color.gray.50}",
+      "dark": "{core.color.gray.900}"
+    }
+  },
+  "accent": {
+    "$type": "color",
+    "$value": { "light": "{core.color.violet.600}", "dark": "{core.color.violet.600}" }
+  }
+}

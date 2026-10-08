@@ -1,0 +1,8 @@
+{
+  "size": {
+    "xs": { "$type": "number", "$value": "{core.size.20}" },
+    "sm": { "$type": "number", "$value": "{core.size.24}" },
+    "md": { "$type": "number", "$value": "{core.size.32}" }
+  },
+  "radius": { "$type": "number", "$value": "{core.radius.xl}" }
+}

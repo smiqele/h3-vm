@@ -1,0 +1,291 @@
+.root {
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.toolbarSlot {
+  min-width: 0;
+}
+
+.root[data-sticky-header] .toolbarSlot {
+  position: sticky;
+  top: var(--layout-appHeader-height);
+  z-index: 4;
+  background: var(--surface-default);
+}
+
+.stickyHeaderScroller {
+  position: sticky;
+  top: calc(var(--layout-appHeader-height) + var(--component-data-table-toolbar-height));
+  z-index: 3;
+  overflow: hidden;
+  scrollbar-width: none;
+  background: var(--surface-default);
+}
+
+.stickyHeaderScroller::-webkit-scrollbar { display: none; }
+
+.scroller {
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  overscroll-behavior-inline: none;
+  scrollbar-width: none;
+}
+
+.scroller[data-overflowing] { overflow-x: auto; }
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+.root table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.root table[data-fill] { table-layout: fixed; }
+.root th, .root td { box-sizing: border-box; min-width: var(--data-table-column-min-width); text-align: left; white-space: nowrap; }
+.root th { height: var(--component-data-table-header-height); padding: var(--core-spacing-4) var(--core-spacing-16); border-block: 1px solid var(--border-thin); background: var(--surface-default); color: color-mix(in srgb, var(--text-primary) 45%, transparent); font-family: var(--core-font-family-mono), ui-monospace, monospace; font-size: var(--core-text-label-mono-fontSize); font-weight: var(--core-font-weight-normal); line-height: var(--core-text-label-mono-lineHeight); letter-spacing: var(--core-text-label-mono-letterSpacing); text-transform: uppercase; }
+.root td { height: 52px; padding: var(--core-spacing-16); border-bottom: 1px solid var(--border-thin); font-size: var(--core-text-caption-md-fontSize); line-height: var(--core-text-caption-md-lineHeight); }
+.root th[data-inset="compact"], .root td[data-inset="compact"] { padding-inline: var(--core-spacing-12); }
+.root tbody tr { background: var(--surface-default); }
+.root tbody tr:hover {
+  background:
+    linear-gradient(var(--surface-subtle), var(--surface-subtle)),
+    var(--surface-default);
+}
+.root tbody tr[data-selected="true"] {
+  background:
+    linear-gradient(var(--surface-subtle), var(--surface-subtle)),
+    var(--surface-default);
+}
+
+.root [data-pinned="start"] { background: var(--surface-default); }
+
+.scroller[data-overflowing] [data-pinned="start"],
+.stickyHeaderScroller[data-overflowing] [data-pinned="start"] {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  border-right: 1px dashed var(--border-thin);
+}
+
+.scroller[data-overflowing] thead [data-pinned="start"],
+.stickyHeaderScroller[data-overflowing] thead [data-pinned="start"] { z-index: 4; }
+
+.root thead .actionsCell { background: var(--surface-default); }
+.root .actionsCell { min-width: 52px; width: 52px; padding: 0; background: var(--surface-default); }
+.root tbody .actionsCell { padding: 0; }
+.actionsContent { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.scroller[data-overflowing] .actionsCell,
+.stickyHeaderScroller[data-overflowing] .actionsCell {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  isolation: isolate;
+}
+
+.stickyHeaderScroller .actionsCell { z-index: 4; }
+
+.scroller[data-overflowing] .actionsCell::before,
+.stickyHeaderScroller[data-overflowing] .actionsCell::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  z-index: 1;
+  width: 1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-thin) 0 2px,
+    transparent 2px 4px
+  );
+  pointer-events: none;
+}
+.root tbody tr:hover [data-pinned="start"],
+.root tbody tr:hover .actionsCell {
+  background:
+    linear-gradient(var(--surface-subtle), var(--surface-subtle)),
+    var(--surface-default);
+}
+
+.root tbody tr[data-selected="true"] [data-pinned="start"],
+.root tbody tr[data-selected="true"] .actionsCell {
+  background:
+    linear-gradient(var(--surface-subtle), var(--surface-subtle)),
+    var(--surface-default);
+}
+
+.selectionContent {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-12);
+}
+
+.headerContent {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-12);
+  text-transform: uppercase;
+}
+
+.headerContent > span {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sortButton {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--core-spacing-2);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.sortButton > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sortButton > svg {
+  flex: 0 0 12px;
+  opacity: 0;
+}
+
+.sortButton[data-active] > svg,
+.sortButton:focus-visible > svg,
+.root th:hover .sortButton > svg {
+  opacity: 1;
+}
+
+.selectionContent > span,
+.cellContent {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.cellContent {
+  display: block;
+}
+.mobileLabel { display: none; }
+.empty { min-height: 160px; display: grid; place-items: center; border-bottom: 1px solid var(--border-thin); color: var(--text-secondary); font-size: var(--core-text-caption-md-fontSize); line-height: var(--core-text-caption-md-lineHeight); }
+
+@media (max-width: 767px) {
+  .root[data-sticky-header] .toolbarSlot {
+    top: var(--layout-appHeader-height);
+  }
+
+  .stickyHeaderScroller {
+    display: none;
+  }
+
+  .scroller,
+  .scroller[data-overflowing] {
+    overflow-x: clip;
+    padding: var(--core-spacing-8);
+    background: var(--background-app);
+  }
+
+  .root table,
+  .root table[data-fill] {
+    min-width: 0 !important;
+    display: block;
+    table-layout: auto;
+  }
+
+  .root thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .root tbody {
+    display: grid;
+    gap: var(--core-spacing-8);
+  }
+
+  .root tbody tr {
+    position: relative;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--border-thin);
+    border-radius: var(--core-radius-lg);
+    background: var(--surface-default);
+  }
+
+  .root th,
+  .root td {
+    min-width: 0 !important;
+    width: auto !important;
+    white-space: normal;
+  }
+
+  .root td {
+    height: auto;
+    min-height: 72px;
+    padding: var(--core-spacing-12) var(--core-spacing-16);
+    border-bottom: 0;
+  }
+
+  .root td[data-primary="true"] {
+    grid-column: 1 / -1;
+    min-height: 64px;
+    padding-right: calc(var(--core-spacing-16) + 40px);
+    border-bottom: 1px solid var(--border-thin);
+  }
+
+  .root td[data-actions] {
+    position: absolute;
+    inset-block-start: var(--core-spacing-12);
+    inset-inline-end: var(--core-spacing-8);
+    min-height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .root tbody tr:hover [data-pinned="start"],
+  .root tbody tr:hover .actionsCell,
+  .root tbody tr[data-selected="true"] [data-pinned="start"],
+  .root tbody tr[data-selected="true"] .actionsCell {
+    background: transparent;
+  }
+
+  .mobileLabel {
+    display: block;
+    margin-bottom: var(--core-spacing-4);
+    color: color-mix(in srgb, var(--text-primary) 45%, transparent);
+    font-family: var(--core-font-family-mono), ui-monospace, monospace;
+    font-size: var(--core-text-label-mono-fontSize);
+    font-weight: var(--core-font-weight-normal);
+    line-height: var(--core-text-label-mono-lineHeight);
+    letter-spacing: var(--core-text-label-mono-letterSpacing);
+    text-transform: uppercase;
+  }
+
+  .empty {
+    border: 1px solid var(--border-thin);
+    border-radius: var(--core-radius-lg);
+    background: var(--surface-default);
+  }
+}
+
+@media (max-width: 479px) {
+  .root tbody tr {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

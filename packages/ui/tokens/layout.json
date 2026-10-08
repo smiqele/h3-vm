@@ -1,0 +1,42 @@
+{
+  "sidebar": {
+    "width": {
+      "$type": "number",
+      "$value": "{core.size.256}"
+    }
+  },
+  "aside": {
+    "width": {
+      "$type": "number",
+      "$value": "{core.size.256}"
+    }
+  },
+  "appHeader": {
+    "height": {
+      "$type": "number",
+      "$value": "{core.size.48}"
+    }
+  },
+  "pageHeader": {
+    "minHeight": {
+      "$type": "number",
+      "$value": "{core.size.80}"
+    }
+  },
+  "footerHeight": {
+    "$type": "number",
+    "$value": "{core.size.48}"
+  },
+  "mainContent": {
+    "paddingBottom": {
+      "$type": "number",
+      "$value": "{core.spacing.80}"
+    }
+  },
+  "content": {
+    "inset": {
+      "$type": "number",
+      "$value": "{core.spacing.24}"
+    }
+  }
+}

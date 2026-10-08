@@ -1,0 +1,236 @@
+{
+  "heading": {
+    "xl": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 32
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 40
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": -0.4
+      }
+    },
+    "lg": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 24
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 32
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": -0.5
+      }
+    },
+    "md": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 20
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 28
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": -0.4
+      }
+    },
+    "sm": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 17
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 24
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": -0.2
+      }
+    }
+  },
+  "body": {
+    "lg": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 17
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 26
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    },
+    "md": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 15
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 22
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    }
+  },
+  "code": {
+    "md": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 15
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 22
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    },
+    "sm": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 13
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 18
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    }
+  },
+  "label": {
+    "mono": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 12
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 16
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0.75
+      }
+    },
+    "xs": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 12
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 12
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    },
+    "base": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 14
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 14
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    },
+    "md": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 15
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 15
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": -0.2
+      }
+    },
+    "sm": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 13
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 13
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    },
+    "lg": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 17
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 17
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": -0.2
+      }
+    }
+  },
+  "caption": {
+    "md": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 14
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 16
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    },
+    "sm": {
+      "fontSize": {
+        "$type": "number",
+        "$value": 13
+      },
+      "lineHeight": {
+        "$type": "number",
+        "$value": 16
+      },
+      "letterSpacing": {
+        "$type": "number",
+        "$value": 0
+      }
+    }
+  }
+}

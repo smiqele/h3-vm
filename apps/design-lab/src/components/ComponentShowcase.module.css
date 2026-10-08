@@ -1,0 +1,19 @@
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.iconCatalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.iconCatalog article { min-height: 88px; padding: 14px; display: grid; align-content: center; justify-items: start; gap: 12px; border: 1px solid var(--border-default); border-radius: var(--core-radius-lg); background: var(--surface-subtle); }
+.fields, .form { width: min(560px, 100%); display: grid; gap: 18px; }
+.pageHeaderExamples { display: grid; gap: 28px; }
+.pageMeta { min-width: 0; display: flex; align-items: center; gap: var(--core-spacing-4); }
+.pageMeta i { color: var(--text-tertiary); font-style: normal; }
+.copyValue { min-width: 0; display: inline-flex; align-items: center; gap: var(--core-spacing-2); }
+.copyValue > span { color: var(--text-tertiary); }
+.contextPathExamples { display: grid; gap: 32px; }
+.narrowContextPath { width: 320px; min-width: 0; }
+.appHeaderExample { overflow: hidden; background: var(--surface-subtle); }
+.sidebarNavExample { width: 280px; padding: 12px; background: var(--surface-subtle); }
+.appShellExample { --app-shell-min-height: 440px; overflow: hidden; }
+.appShellExample > aside { position: relative; height: 440px; }
+.appShellAside { padding: 20px; color: var(--text-secondary); }
+.pageHeader h2 { margin: 0; font-size: 28px; }
+.alert { padding: 20px; display: grid; gap: 14px; border: 1px solid var(--core-violet-600); border-radius: var(--core-radius-2xl); background: color-mix(in srgb, var(--core-violet-600) 8%, var(--surface-subtle)); }
+.alert p { margin: 7px 0 0; color: var(--text-secondary); }

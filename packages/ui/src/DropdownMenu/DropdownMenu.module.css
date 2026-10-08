@@ -1,0 +1,15 @@
+.root { position: relative; display: inline-flex; flex: 0 0 auto; }
+.content { position: fixed; z-index: 20; max-height: calc(100vh - 16px); padding: var(--core-spacing-6); display: grid; gap: var(--core-spacing-2); overflow-y: auto; border: 1px solid var(--border-thin); border-radius: var(--core-radius-lg); background: var(--surface-default); box-shadow: var(--elevation-medium); }
+.group { display: grid; gap: var(--core-spacing-2); }
+.label { padding: var(--core-spacing-6); color: var(--text-tertiary); font-size: 12px; font-weight: var(--core-font-weight-semibold); line-height: 16px; }
+.separator { height: 1px; margin: var(--core-spacing-4) 0; background: var(--border-thin); }
+.item { width: 100%; min-height: var(--core-size-32); padding: 0 var(--core-spacing-6); display: flex; align-items: center; gap: var(--core-spacing-6); border: 0; border-radius: var(--core-radius-md); background: transparent; color: var(--text-primary); font: inherit; font-size: 14px; line-height: 20px; text-align: left; cursor: pointer; }
+.item:hover, .item:focus-visible { background: var(--state-hover); outline: none; }
+.item:active { background: var(--state-pressed); }
+.item:disabled { color: var(--text-disabled); cursor: default; }
+.item[data-destructive] { color: var(--status-danger-text); }
+.leading, .trailing { width: var(--core-icon-height-sm); height: var(--core-icon-height-sm); display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; }
+.itemLabel { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shortcut { margin-left: auto; color: var(--text-tertiary); font-size: 12px; }
+
+@media (prefers-reduced-motion: reduce) { .item { transition: none; } }

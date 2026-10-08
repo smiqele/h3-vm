@@ -1,0 +1,22 @@
+.navigation {
+  display: grid;
+  gap: var(--core-spacing-8);
+  align-content: start;
+}
+
+.navigation section {
+  display: grid;
+  gap: 0;
+  padding-inline: var(--core-spacing-4);
+}
+
+.navigation p {
+  min-height: var(--core-size-24);
+  margin: 0;
+  padding: var(--core-spacing-4) var(--core-spacing-8);
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: var(--core-text-caption-sm-fontSize);
+  line-height: var(--core-text-caption-sm-lineHeight);
+}

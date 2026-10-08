@@ -1,0 +1,16 @@
+{
+  "meter": {
+    "height": { "$type": "number", "$value": "{core.size.2}" }
+  },
+  "ring": {
+    "size": { "$type": "number", "$value": "{core.size.16}" },
+    "thickness": { "$type": "number", "$value": "{core.size.4}" }
+  },
+  "activity": {
+    "width": { "$type": "number", "$value": "{core.size.16}" },
+    "height": { "$type": "number", "$value": "{core.size.20}" },
+    "paddingBottom": { "$type": "number", "$value": "{core.spacing.4}" },
+    "gap": { "$type": "number", "$value": 1 },
+    "barWidth": { "$type": "number", "$value": "{core.size.2}" }
+  }
+}

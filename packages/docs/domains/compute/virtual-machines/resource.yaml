@@ -1,0 +1,34 @@
+version: 0.2.0
+
+resources:
+  - id: resource.compute.vm
+    name: Виртуальная машина
+    domain: compute
+    fields:
+      - { id: id, type: string, required: true }
+      - { id: name, type: string, required: true }
+      - { id: status, type: enum, values: [creating, running, stopping, stopped, starting, error, deleting] }
+      - { id: network, type: string }
+      - { id: subnetIp, type: string }
+      - { id: publicIp, type: string, nullable: true }
+      - { id: region, type: string, required: true }
+      - { id: cpu, type: integer, minimum: 1 }
+      - { id: cpuUtilization, type: number, minimum: 0, maximum: 1 }
+      - { id: ramGb, type: integer, minimum: 1 }
+      - { id: ramUtilization, type: number, minimum: 0, maximum: 1 }
+      - { id: diskGb, type: integer, minimum: 1 }
+      - { id: diskLimitGb, type: integer, minimum: 1 }
+      - { id: image, type: string }
+    operations:
+      - { id: operation.compute.vm.create, permission: compute.vm.create }
+      - { id: operation.compute.vm.start, permission: compute.vm.update }
+      - { id: operation.compute.vm.stop, permission: compute.vm.update }
+      - { id: operation.compute.vm.delete, permission: compute.vm.delete, confirmation: destructive }
+    transitions:
+      - { from: creating, event: provision-succeeded, to: running }
+      - { from: creating, event: provision-failed, to: error }
+      - { from: running, event: stop-requested, to: stopping }
+      - { from: stopping, event: stop-succeeded, to: stopped }
+      - { from: stopped, event: start-requested, to: starting }
+      - { from: starting, event: start-succeeded, to: running }
+      - { from: [running, stopped, error], event: delete-requested, to: deleting }

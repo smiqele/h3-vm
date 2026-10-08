@@ -1,0 +1,7 @@
+{
+  "height": { "$type": "number", "$value": "{core.size.32}" },
+  "paddingX": { "$type": "number", "$value": "{core.spacing.8}" },
+  "gap": { "$type": "number", "$value": "{core.spacing.8}" },
+  "radius": { "$type": "number", "$value": "{core.radius.md}" },
+  "iconSize": { "$type": "number", "$value": "{core.icon.height.sm}" }
+}

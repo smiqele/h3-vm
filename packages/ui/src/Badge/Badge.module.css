@@ -1,0 +1,10 @@
+.badge { box-sizing: border-box; width: fit-content; max-width: 100%; height: var(--component-badge-height); padding: 0 var(--component-badge-paddingX); display: inline-flex; align-items: center; gap: var(--component-badge-gap); overflow: hidden; border: 1px solid var(--badge-border, var(--border-default)); border-radius: var(--component-badge-radius); background: var(--badge-background, var(--surface-subtle)); color: var(--badge-color, var(--text-primary)); font-family: var(--core-font-family-sans); font-size: var(--component-badge-fontSize); font-weight: var(--component-badge-fontWeight); line-height: var(--component-badge-lineHeight); text-overflow: ellipsis; white-space: nowrap; }
+.badge[data-icon-leading] { padding-left: var(--component-badge-paddingIcon); }
+.badge[data-icon-trailing] { padding-right: var(--component-badge-paddingIcon); }
+.badge[data-mono] { font-family: var(--core-font-family-mono), ui-monospace, monospace; }
+.label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.icon { width: var(--component-badge-iconSize); height: var(--component-badge-iconSize); display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; }
+.icon > *, .icon svg { width: 100%; height: 100%; }
+.badge[role="button"] { cursor: pointer; }
+.badge[role="button"]:hover { background: var(--state-hover); }
+.badge[role="button"]:focus-visible { outline: 2px solid var(--border-accent); outline-offset: 2px; }

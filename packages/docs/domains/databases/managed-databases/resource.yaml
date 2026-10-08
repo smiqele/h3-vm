@@ -1,0 +1,13 @@
+version: 0.2.0
+
+resources:
+  - id: resource.database.cluster
+    name: Кластер базы данных
+    domain: database
+    fields:
+      - { id: id, type: string, required: true }
+      - { id: name, type: string, required: true }
+      - { id: status, type: enum, values: [creating, running, maintenance, error, deleting] }
+      - { id: engine, type: enum, values: [postgresql, mysql] }
+      - { id: engineVersion, type: string, required: true }
+      - { id: region, type: string, required: true }

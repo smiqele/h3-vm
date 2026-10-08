@@ -1,0 +1,181 @@
+version: 0.1.0
+
+areas:
+  - ui
+  - ux
+  - product
+  - architecture
+
+statuses:
+  - backlog
+  - ready
+  - in-progress
+  - blocked
+  - done
+
+tasks:
+  - id: UI-001
+    title: Добавить сортировку в DataTable
+    area: ui
+    kind: feature
+    status: ready
+    priority: high
+    target: component.data-table
+    summary: Сделать заголовки колонок интерактивными и поддержать управляемое состояние сортировки.
+    acceptance:
+      - Сортируемые колонки визуально отличаются от несортируемых
+      - Поддерживаются ascending, descending и отсутствие сортировки
+      - Состояние доступно с клавиатуры и объявляется скринридеру
+      - Пример добавлен в Design Lab и используется в прототипе
+    files:
+      - packages/ui/src/DataTable
+      - apps/design-lab/src/components/ComponentShowcase.tsx
+      - apps/prototypes
+    dependsOn: []
+
+  - id: UI-002
+    title: Добавить поиск и фильтры для таблицы ресурсов
+    area: ui
+    kind: feature
+    status: done
+    priority: medium
+    target: component.data-table
+    summary: Описать композицию панели инструментов таблицы без привязки к виртуальным машинам.
+    acceptance:
+      - Поиск и фильтры передаются в композицию извне
+      - Активные фильтры можно увидеть и сбросить
+      - Таблица не содержит продуктовую бизнес-логику
+    files:
+      - packages/ui/src/DataTable
+      - packages/docs/ux/patterns.yaml
+    dependsOn: []
+
+  - id: UI-003
+    title: Описать состояния DataTable
+    area: ui
+    kind: feature
+    status: ready
+    priority: high
+    target: component.data-table
+    summary: Добавить единый контракт для loading, empty, error и filtered-empty.
+    acceptance:
+      - Все четыре состояния представлены в Design Lab
+      - Loading не вызывает скачок ширины колонок
+      - Empty и error допускают передачу действия
+      - Состояния описаны отдельно от конкретного ресурса
+    files:
+      - packages/ui/src/DataTable
+      - packages/ui/components.yaml
+      - packages/docs/ui
+    dependsOn: []
+
+  - id: UI-004
+    title: Расширить SelectionControl до полей формы
+    area: ui
+    kind: feature
+    status: backlog
+    priority: medium
+    target: primitive.selection-control
+    summary: Добавить композиции checkbox и radio с label, description, error и disabled.
+    acceptance:
+      - Нативный input остается источником состояния
+      - Label увеличивает кликабельную область
+      - Error и description имеют стабильную разметку
+      - Добавлены автоматические проверки клавиатурного управления
+    files:
+      - packages/ui/src/SelectionControl
+      - apps/design-lab/src/components/ComponentShowcase.tsx
+    dependsOn: []
+
+  - id: UI-005
+    title: Пересобрать навигацию прототипа на компонентах пакета UI
+    area: ui
+    kind: refactor
+    status: backlog
+    priority: medium
+    target: component.sidebar-nav
+    summary: Отделить универсальную навигационную модель от продуктового состава разделов.
+    acceptance:
+      - Пакет UI не знает названия продуктовых разделов
+      - Активное и свернутое состояния управляются через публичный API
+      - Навигация прототипа сохраняет текущее визуальное поведение
+    files:
+      - packages/ui/src/SidebarNav
+      - apps/prototypes
+    dependsOn: []
+
+  - id: UX-001
+    title: Описать паттерн отображения ошибок
+    area: ux
+    kind: documentation
+    status: ready
+    priority: high
+    target: pattern.error-presentation
+    summary: Разделить ошибки поля, формы, страницы и временные системные ошибки.
+    acceptance:
+      - Для каждого уровня указаны условия применения
+      - Описаны recovery-действия и сохранение введенных данных
+      - Паттерн связан с используемыми UI-компонентами
+      - Есть исполняемые примеры ключевых вариантов
+    files:
+      - packages/docs/ux/patterns.yaml
+      - packages/docs/ux
+      - apps/design-lab
+    dependsOn: []
+
+  - id: PRODUCT-001
+    title: Зафиксировать модель Workspace и Project
+    area: product
+    kind: research
+    status: ready
+    priority: high
+    target: resource.workspace
+    summary: Уточнить иерархию контекстов консоли, права доступа и терминологию хлебных крошек.
+    acceptance:
+      - Workspace и Project имеют однозначные определения
+      - Описаны отношения, идентификаторы и границы доступа
+      - ContextPath использует согласованную терминологию
+      - Зафиксированы открытые продуктовые вопросы
+    files:
+      - packages/docs/domains/organization/contexts.yaml
+      - packages/docs/domains/*/*/resource.yaml
+      - packages/docs/product
+    dependsOn: []
+
+  - id: PRODUCT-002
+    title: Описать переходы статусов виртуальной машины
+    area: product
+    kind: feature
+    status: backlog
+    priority: medium
+    target: resource.virtual-machine
+    summary: Определить команды, переходные состояния, ошибки и доступность действий.
+    acceptance:
+      - Составлена таблица допустимых переходов
+      - Для долгих операций определено промежуточное состояние
+      - Ошибка не приводит к потере последнего подтвержденного состояния
+      - Сценарий представлен отдельным UX-паттерном
+    files:
+      - packages/docs/domains/*/*/resource.yaml
+      - packages/docs/ux/patterns.yaml
+      - packages/docs/domains/*/*/fixtures.yaml
+    dependsOn:
+      - UX-001
+
+  - id: ARCH-001
+    title: Добавить проверку связей экранов и backlog
+    area: architecture
+    kind: tooling
+    status: backlog
+    priority: low
+    target: specification-graph
+    summary: Позволить экрану или компоненту ссылаться на связанные задачи и проверять эти ссылки при сборке.
+    acceptance:
+      - Неизвестный ID задачи приводит к понятной ошибке проверки
+      - Связь остается необязательной
+      - Design Lab показывает связанные открытые задачи
+    files:
+      - scripts/validate-specs.mjs
+      - packages/ui/components.yaml
+      - packages/docs/domains/*/*/screens.yaml
+    dependsOn: []

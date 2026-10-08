@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "CoFo Sans Mono";
+  src:
+    local("CoFo Sans Mono"),
+    local("CoFo Sans Mono VF Trial"),
+    local("CoFoSansMonoVF-Trial");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root { font-family: var(--core-font-family-sans), ui-sans-serif, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html[data-theme="dark"], html:not([data-theme]) { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; overscroll-behavior-y: none; }
+body { background: var(--background-app); color: var(--text-primary); }
+code { font-family: var(--core-font-family-mono), ui-monospace, monospace; }
+
+html[data-console-width="1680"] .console-app-shell {
+  max-width: 1680px;
+  margin-inline: auto;
+}
+
+html[data-console-width="1920"] .console-app-shell {
+  max-width: 1920px;
+  margin-inline: auto;
+}

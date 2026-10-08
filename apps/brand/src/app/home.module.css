@@ -1,0 +1,90 @@
+.page {
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: #1c1c1c;
+  color: #fff;
+  color-scheme: dark;
+  font-family: var(--font-pragmatica), Arial, sans-serif;
+}
+.page :where(h1, p) { margin: 0; }
+.page :where(button) { font: inherit; }
+.stage { position: relative; width: min(1400px, calc(100% - 80px)); min-height: max(100svh, 980px); margin: 0 auto; }
+.header { position: fixed; z-index: 5; top: 10px; left: 50%; display: flex; align-items: center; justify-content: space-between; width: min(1400px, calc(100% - 80px)); height: 50px; padding: 0 24px; transform: translateX(-50%); }
+.brand { display: inline-flex; align-items: center; height: 49px; }
+.brand img { display: block; width: 102px; height: 13px; }
+.headerRight { display: flex; align-items: center; gap: 40px; }
+.availability { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 18px; letter-spacing: -.01em; white-space: nowrap; }
+.availabilityDot { width: 8px; height: 8px; flex: none; background: url("/iaas-hero/availability-dot.svg") center / contain no-repeat; }
+.consoleButton, .secondaryAction { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #393939; border-radius: 10px; background: #282828; color: #fff; box-shadow: inset 0 1px rgba(255,255,255,.12), 0 1px 2px rgba(0,0,0,.07); font-family: "Manrope Variable", Arial, sans-serif; text-decoration: none; }
+.consoleButton { height: 32px; padding: 0 12px; font-size: 13px; font-weight: 600; line-height: 15px; cursor: not-allowed; }
+.hero { position: relative; width: 100%; min-height: inherit; }
+.heroCopy { position: absolute; z-index: 2; top: 50svh; left: 0; display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; transform: translateY(-50%); }
+.title, .features, .actions { opacity: 0; transform: translateY(18px); transition: opacity 650ms ease, transform 650ms cubic-bezier(.22,1,.36,1); }
+.title { position: relative; width: min(1200px, 100%); font-size: 52px; font-weight: 500; line-height: 52px; letter-spacing: -1.04px; }
+.secondLine { display: block; width: 100%; height: 52px; white-space: nowrap; text-align: center; }
+.secondLinePrefix { display: inline-block; margin-right: .25em; vertical-align: bottom; }
+.wordSlot { position: relative; display: inline-block; vertical-align: bottom; width: max-content; height: 1em; overflow: hidden; text-align: left; transition: width 680ms cubic-bezier(.22,1,.36,1); }
+.wordMeasure { display: block; visibility: hidden; white-space: nowrap; }
+.word { position: absolute; inset: 0; display: flex; align-items: center; white-space: nowrap; opacity: 0; transform: translateY(105%); transition: opacity 460ms ease, transform 680ms cubic-bezier(.22,1,.36,1); }
+.word[data-word-state="current"] { opacity: 1; transform: translateY(0); }
+.word[data-word-state="previous"] { transform: translateY(-105%); }
+.wordMetrics { position: absolute; top: 0; left: -9999px; visibility: hidden; white-space: nowrap; pointer-events: none; }
+.wordMetrics > span { display: block; width: max-content; }
+.features { margin-top: 24px; color: #fff; font-size: 20px; font-weight: 500; line-height: 24px; letter-spacing: -.4px; transition-delay: 130ms; }
+.actions { display: flex; justify-content: center; gap: 10px; margin-top: 36px; transition-delay: 300ms; pointer-events: none; }
+.primaryAction, .secondaryAction { height: 40px; padding: 0 16px; border-radius: 10px; color: #fff; font-family: "Manrope Variable", Arial, sans-serif; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.primaryAction { border: 1px solid #4b2bc8; background: linear-gradient(270deg,rgba(255,255,255,.15),transparent 25%,transparent 75%,rgba(255,255,255,.15)),#5b37ed; box-shadow: 0 1px 2px #0003, inset 0 1px #fff3, inset 0 15px 15px #fff1; cursor: not-allowed; }
+.secondaryAction:hover { background: #343434; }
+.page:not([data-stage="intro"]) .title, .page:not([data-stage="intro"]) .features, .page:not([data-stage="intro"]) .actions { opacity: 1; transform: translateY(0); }
+.page:not([data-stage="intro"]) .actions { pointer-events: auto; }
+.cardStack { position: absolute; top: max(590px, calc(50svh + 143px)); left: calc(50% + 5px); width: min(1000px, 100%); height: 360px; pointer-events: none; transform: translateX(-50%); }
+.serverCard { position: absolute; left: calc(50% - 229.5px); width: 459px; height: 100px; padding: 12px 16px; overflow: hidden; border: 1px solid #393939; border-radius: 20px; background: #1c1c1c; pointer-events: auto; }
+.cardOne { z-index: 3; top: 48px; height: 80px; border-radius: 16px; }
+.cardTwo { z-index: 2; top: 48px; left: calc(50% - 218.5px); width: 437px; }
+.cardThree { z-index: 1; top: 68px; left: calc(50% - 202px); width: 404px; }
+.cardTop, .cardBottom { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 22px; gap: 10px; font-size: 15px; letter-spacing: -.02em; white-space: nowrap; }
+.cardBottom { font-size: 13px; }
+.cardBottom { position: absolute; right: 16px; bottom: 11px; left: 16px; width: auto; opacity: 0; transform: translateY(10px); }
+.serverName { display: flex; align-items: center; gap: 10px; }
+.statusDot { display: inline-block; width: 9px; height: 9px; flex: none; border-radius: 50%; background: url("/iaas-hero/status-dot.svg") center / contain no-repeat; }
+.cardMeta { display: flex; align-items: center; gap: 10px; }
+.cardStatus { display: none; color: #a6a6a6; font-size: 13px; }
+.cardIp { display: none; font-size: 15px; }
+.specifications { display: flex; align-items: center; gap: 12px; }
+.specification { display: inline-flex; align-items: center; gap: 4px; }
+.specification img { display: block; width: 16px; height: 16px; }
+.price { flex: none; }
+.hoverBridge { position: absolute; z-index: 0; top: 24px; left: calc(50% - 229.5px); width: 459px; height: 322px; pointer-events: none; }
+.cardOne .cardBottom { opacity: 1; transform: translateY(0); }
+.cardOne .cardIp { display: inline-flex; }
+.page:has(.cardStack:hover, .cardStack:focus-within) .cardOne { top: 24px; }
+.page:has(.cardStack:hover, .cardStack:focus-within) .cardTwo { top: 135px; left: calc(50% - 229.5px); width: 459px; }
+.page:has(.cardStack:hover, .cardStack:focus-within) .cardThree { top: 246px; left: calc(50% - 229.5px); width: 459px; }
+.page:has(.cardStack:hover, .cardStack:focus-within) .cardBottom { opacity: 1; transform: translateY(0); }
+.page:has(.cardStack:hover, .cardStack:focus-within) .cardIp { display: inline-flex; }
+.page:has(.cardStack:hover, .cardStack:focus-within) .hoverBridge { pointer-events: auto; }
+.page :where(a, button):focus-visible, .serverCard:focus-visible { outline: 2px solid #a78bfa; outline-offset: 4px; }
+@media (max-width: 800px) {
+  .stage { width: calc(100% - 32px); min-height: 850px; }
+  .header { width: calc(100% - 32px); padding: 0 4px; }
+  .headerRight { gap: 12px; }
+  .availability { font-size: 11px; }
+  .hero { display: flex; flex-direction: column; align-items: center; min-height: 850px; padding-top: 130px; }
+  .heroCopy { position: relative; top: auto; left: auto; transform: none; }
+  .title { font-size: clamp(22px, 5.6vw, 36px); line-height: 1.2; }
+  .secondLine { height: 1.2em; }
+  .features { max-width: 500px; font-size: 13px; }
+  .actions { margin-top: 22px; }
+  .primaryAction, .secondaryAction { padding: 0 10px; font-size: 12px; }
+  .cardStack { position: relative; top: auto; left: auto; height: 360px; margin-top: 40px; transform: none; }
+  .serverCard { left: 12px; width: calc(100% - 24px); }
+  .cardTop, .cardBottom { font-size: 11px; }
+  .cardStatus, .cardIp { font-size: 10px; }
+  .specifications { gap: 6px; }
+  .specification img { width: 13px; height: 13px; }
+  .hoverBridge { left: 12px; width: calc(100% - 24px); }
+  .cardTwo { left: 18px; width: calc(100% - 36px); }
+  .cardThree { left: 24px; width: calc(100% - 48px); }
+  .page:has(.cardStack:hover, .cardStack:focus-within) .cardTwo, .page:has(.cardStack:hover, .cardStack:focus-within) .cardThree { left: 12px; width: calc(100% - 24px); }
+}
+@media (prefers-reduced-motion: reduce) { .page * { transition: none !important; animation: none !important; } }

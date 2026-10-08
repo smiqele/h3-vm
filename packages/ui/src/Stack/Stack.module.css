@@ -1,0 +1,14 @@
+.stack {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stack[data-gap="4"] { gap: var(--core-spacing-4); }
+.stack[data-gap="6"] { gap: var(--core-spacing-6); }
+.stack[data-gap="8"] { gap: var(--core-spacing-8); }
+.stack[data-gap="12"] { gap: var(--core-spacing-12); }
+.stack[data-gap="16"] { gap: var(--core-spacing-16); }
+.stack[data-gap="20"] { gap: var(--core-spacing-20); }
+.stack[data-gap="24"] { gap: var(--core-spacing-24); }
+.stack[data-gap="32"] { gap: var(--core-spacing-32); }

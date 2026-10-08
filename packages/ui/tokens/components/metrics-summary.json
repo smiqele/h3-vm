@@ -1,0 +1,19 @@
+{
+  "radius": { "$type": "number", "$value": "{core.radius.xl}" },
+  "item": {
+    "paddingInline": { "$type": "number", "$value": "{core.spacing.16}" },
+    "paddingTop": { "$type": "number", "$value": "{core.spacing.16}" },
+    "paddingBottom": { "$type": "number", "$value": "{core.spacing.16}" }
+  },
+  "borderless": {
+    "paddingInline": { "$type": "number", "$value": "{core.spacing.24}" },
+    "paddingBlock": { "$type": "number", "$value": "{core.spacing.12}" }
+  },
+  "meter": {
+    "indicatorWidth": { "$type": "number", "$value": "{core.size.20}" }
+  },
+  "shadow": {
+    "$type": "string",
+    "$value": "0 -1px 2px 1px rgba(0, 0, 0, 0.01)"
+  }
+}

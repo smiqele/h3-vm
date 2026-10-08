@@ -1,0 +1,14 @@
+version: 0.1.0
+
+patterns:
+  - id: pattern.vm-status-transition
+    status: prototype
+    name: Смена статуса виртуальной машины
+    purpose: Показать отдельно от экрана переход ресурса и доступность действий.
+    resource: resource.compute.vm
+    variants:
+      - { from: running, intermediate: stopping, to: stopped, action: operation.compute.vm.stop }
+      - { from: stopped, intermediate: starting, to: running, action: operation.compute.vm.start }
+      - { from: running, intermediate: deleting, to: deleted, action: operation.compute.vm.delete }
+      - { from: creating, intermediate: creating, to: error, action: provision }
+    components: [primitive.status, component.inline-alert]

@@ -1,0 +1,22 @@
+{
+  "gap": {
+    "$type": "number",
+    "$value": "{core.spacing.4}"
+  },
+  "markerSize": {
+    "$type": "number",
+    "$value": "{core.size.8}"
+  },
+  "indicatorSize": {
+    "$type": "number",
+    "$value": "{core.size.16}"
+  },
+  "fontSize": {
+    "$type": "number",
+    "$value": "{core.text.caption.md.fontSize}"
+  },
+  "lineHeight": {
+    "$type": "number",
+    "$value": "{core.text.caption.md.lineHeight}"
+  }
+}

@@ -1,0 +1,38 @@
+version: 0.3.0
+
+screens:
+  - id: screen.database.cluster.list
+    status: prototype
+    title: Базы данных
+    route: /databases
+    resource: resource.database.cluster
+    pattern: pattern.resource-list
+    blocks:
+      - { id: header, component: component.page-header }
+      - id: table
+        component: component.data-table
+        props:
+          selection: multiple
+          selectionColumnId: name
+          searchFields: [name, id, engine, region]
+          statusField: status
+          statusOptions: [running, creating, maintenance, error]
+          columns:
+            - { field: name, label: Имя, kind: link, href: "/databases/{id}", copyable: true, width: 200, inset: compact, pinned: start }
+            - { field: status, label: Статус, kind: status, statusResource: database-cluster, width: 150, inset: compact }
+            - { field: id, label: ID, kind: text, copyable: true, width: 180, inset: compact }
+            - { field: engine, label: Движок, kind: text, width: 130 }
+            - { field: engineVersion, label: Версия, kind: text, width: 120 }
+            - { field: region, label: Регион, kind: text, width: 120 }
+    documentation: domains/databases/managed-databases
+
+  - id: screen.database.cluster.create
+    status: prototype
+    title: Создание базы данных
+    route: /databases/create
+    resource: resource.database.cluster
+    pattern: pattern.resource-create
+    blocks:
+      - { id: header, component: component.page-header }
+      - { id: form, component: component.form }
+    documentation: domains/databases/managed-databases

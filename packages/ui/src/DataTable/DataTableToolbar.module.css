@@ -1,0 +1,143 @@
+.toolbar {
+  box-sizing: border-box;
+  min-height: var(--component-data-table-toolbar-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--component-data-table-toolbar-gap);
+  padding-inline: var(--component-data-table-toolbar-paddingStart);
+  border-top: 1px solid var(--border-thin);
+  background:
+    linear-gradient(var(--surface-subtle), var(--surface-subtle)),
+    var(--surface-default);
+}
+
+.toolbar[data-has-actions="true"] {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.search {
+  box-sizing: border-box;
+  width: min(100%, var(--component-data-table-search-maxWidth));
+  height: var(--component-data-table-search-height);
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--component-data-table-search-gap);
+  padding-inline: var(--component-data-table-search-paddingStart)
+    var(--component-data-table-search-paddingEnd);
+  border-radius: var(--component-data-table-search-radius);
+  color: var(--text-primary);
+}
+
+.inputShell {
+  height: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-4);
+}
+
+.inputTrack {
+  position: relative;
+  height: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+
+.inputShell[data-finalized="true"] {
+  flex: 0 1 auto;
+}
+
+.inputShell[data-finalized="true"] .inputTrack {
+  flex: 0 1 auto;
+}
+
+.inputTrack input,
+.inputMeasure {
+  font-family: var(--core-font-family-sans);
+  font-size: var(--core-text-label-base-fontSize);
+  font-weight: var(--core-font-weight-normal);
+  line-height: var(--core-text-label-base-lineHeight);
+}
+
+.inputTrack input {
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.inputMeasure {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  visibility: hidden;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.inputTrack input::placeholder {
+  color: var(--text-tertiary);
+  opacity: 1;
+}
+
+.inputTrack input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--core-spacing-4);
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: var(--core-spacing-4);
+}
+
+.actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--core-spacing-4);
+  background: transparent;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  .toolbar {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: var(--core-spacing-4) var(--core-spacing-8);
+  }
+
+  .actions {
+    display: none;
+  }
+}

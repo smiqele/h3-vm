@@ -1,0 +1,32 @@
+version: 0.1.0
+
+sections:
+  - id: general
+    items:
+      - { id: service.overview, label: Обзор, icon: layers, lifecycle: planned }
+      - { id: service.iam, label: Команда и IAM, icon: users, lifecycle: planned }
+      - { id: service.billing, label: Биллинг, icon: billing, lifecycle: planned }
+  - id: compute
+    label: Вычисление
+    items:
+      - { id: service.compute.vm, label: Виртуальные машины, icon: server, lifecycle: available, screen: screen.compute.vm.list }
+      - { id: service.compute.images, label: Образы и шаблоны, icon: images, lifecycle: planned }
+  - id: databases
+    label: Базы данных
+    items:
+      - { id: service.database.cluster, label: Managed Databases, icon: database, lifecycle: prototype, screen: screen.database.cluster.list }
+  - id: storage
+    label: Хранение
+    items:
+      - { id: service.storage.disks, label: Диски, icon: hard-drive, lifecycle: planned }
+      - { id: service.storage.snapshots, label: Снапшоты и бэкапы, icon: archive, lifecycle: planned }
+      - { id: service.storage.s3, label: S3 Object Storage, icon: disc, lifecycle: planned }
+  - id: network
+    label: Сети
+    items:
+      - { id: service.network.vpc, label: VPC и подсети, icon: network, lifecycle: planned }
+      - { id: service.network.routes, label: Маршруты и шлюзы, icon: route, lifecycle: planned }
+      - { id: service.network.floating-ip, label: Floating IP, icon: server, lifecycle: planned }
+      - { id: service.network.security-groups, label: Security Groups, icon: shield, lifecycle: planned }
+      - { id: service.network.load-balancers, label: Балансировщики, icon: sparkles, lifecycle: planned }
+      - { id: service.network.dns, label: DNS-зоны, icon: globe, lifecycle: planned }

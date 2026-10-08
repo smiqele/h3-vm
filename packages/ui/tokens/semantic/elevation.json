@@ -1,0 +1,5 @@
+{
+  "low": { "$type": "string", "$value": { "light": "0 1px 2px rgba(0, 0, 0, 0.07)", "dark": "0 1px 2px rgba(0, 0, 0, 0.28)" } },
+  "medium": { "$type": "string", "$value": { "light": "0 8px 24px rgba(0, 0, 0, 0.12)", "dark": "0 8px 24px rgba(0, 0, 0, 0.36)" } },
+  "high": { "$type": "string", "$value": { "light": "0 16px 48px rgba(0, 0, 0, 0.18)", "dark": "0 16px 48px rgba(0, 0, 0, 0.48)" } }
+}

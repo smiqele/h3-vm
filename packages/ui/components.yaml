@@ -1,0 +1,396 @@
+version: 0.1.0
+
+primitives:
+  - id: primitive.logo
+    name: Logo
+    status: prototype
+    properties:
+      color: currentColor
+      intrinsicSize: [109, 24]
+      accessibilityName: required
+    tokens: [text/primary, text/secondary]
+
+  - id: primitive.badge
+    name: Badge
+    status: prototype
+    properties:
+      children: required
+      mono: [true, false]
+      leadingIcon: [true, false]
+      trailingIcon: [true, false]
+      color: inherited-or-custom
+    states: [default, hover, focus]
+    rules:
+      - Badge всегда имеет полностью скругленную форму.
+      - Иконка закрытия передается через trailingIcon; обработчик удаления задается потребителем.
+      - leadingIcon и trailingIcon используются для смысловых иконок.
+      - mono применяется для идентификаторов, токенов и технических значений.
+    tokens: [badge/height, badge/paddingX, badge/paddingIcon, badge/gap, badge/radius, badge/iconSize, badge/fontSize, badge/fontWeight, badge/lineHeight, surface/subtle, border/default, text/primary, font/family/sans, font/family/mono]
+
+  - id: primitive.icon
+    name: Icon
+    status: prototype
+    library: lucide
+    properties:
+      name: registry
+      size: [sm, md, lg]
+      color: currentColor
+      accessibilityLabel: optional
+    tokens: [icon/height/sm, icon/height/md, icon/height/lg, icon/strokeWeight]
+    rules:
+      - Декоративная иконка скрыта от assistive technologies.
+      - Значимая иконка получает доступное имя через label.
+
+  - id: primitive.button
+    name: Button
+    status: prototype
+    properties:
+      variant: [solid, soft, ghost]
+      leadingIcon: [true, false]
+      trailingIcon: [true, false]
+    states: [default, hover, active, focus, disabled, loading]
+    tokens: [button/solid/content, button/solid/surface, button/soft/content, button/soft/surface, button/height, button/paddingX, button/paddingIcon, button/gap, button/radius, button/iconSize, button/fontSize, button/fontWeight/default, button/fontWeight/solid, button/lineHeight, state/hover, state/pressed]
+
+  - id: primitive.icon-button
+    name: Icon button
+    status: prototype
+    builtFrom: [primitive.icon]
+    properties:
+      icon: registry
+      label: required
+      size: [default, compact, micro]
+    states: [default, hover, active, focus, disabled]
+    tokens: [icon-button/size/default/diameter, icon-button/size/compact/diameter, icon-button/size/micro/diameter, icon-button/iconSize, icon-button/radius, state/hover, state/pressed, text/primary, text/disabled, border/focus]
+    rules:
+      - Доступное имя label обязательно, так как видимого текста у кнопки нет.
+      - Компонент предназначен только для действий, смысл которых однозначно передает иконка.
+      - Не является вариантом Button и не наследует его material-слои.
+      - Micro имеет область 24px и иконку 16px; используется для вторичных действий внутри плотного контента, например copy в DataTable.
+
+  - id: primitive.avatar
+    name: Avatar
+    status: prototype
+    properties:
+      src: optional
+      label: required
+      fallback: optional
+      size: [xs, sm, md]
+    rules:
+      - Изображение и текстовый fallback имеют одинаковую геометрию.
+      - При отсутствии изображения доступное имя назначается контейнеру.
+    tokens: [avatar/*, surface/strong, border/thin, text/primary]
+
+  - id: primitive.text-field
+    name: Text field
+    status: prototype
+    properties:
+      state: [default, focus, invalid, disabled]
+    rules:
+      - Ошибка использует семантические feedback/danger токены и связана с полем через aria-describedby.
+      - Компонент принимает нативные атрибуты input и не хранит состояние формы.
+    tokens: [text/primary, text/secondary, feedback/danger/border, feedback/danger/text, border/subtle, border/focus, surface/default, control/height/*, radius/lg]
+    tokenGaps: []
+
+  - id: primitive.status
+    name: Status
+    status: prototype
+    properties:
+      tone: [positive, neutral, progress, warning, danger, unknown]
+      animated: [false, true]
+      icon: optional
+      emphasis: [primary, secondary]
+    rules:
+      - Один размер — область индикатора 16px, маркер 8px, gap 4px и текст caption/md.
+      - Опциональная icon заменяет точку, занимает 12px внутри той же области 16px и наследует tone.
+      - Emphasis меняет только цвет подписи; маркер и иконка продолжают использовать tone.
+      - Не передает состояние только цветом; рядом всегда есть текст.
+      - Длинная подпись переносится без обрезки.
+      - Анимация отключается при prefers-reduced-motion.
+      - Названия и маппинги ресурсов находятся в packages/docs/ui/resource-statuses.yaml.
+    tokens: [component/status/*, text/primary, status/positive, status/neutral, status/progress, status/warning, status/danger, status/unknown]
+    tokenGaps: []
+
+  - id: primitive.metric-indicator
+    name: Metric indicator
+    status: prototype
+    properties:
+      appearance: [activity, bar, ring]
+      level: normalized-number
+      label: optional
+    rules:
+      - Нормализует level в диапазон от 0 до 1.
+      - Activity используется для текущей активности, meter — для доли от лимита.
+      - При наличии label индикатор сообщает значение вспомогательным технологиям.
+    tokens: [component/metric-indicator/*, visualization/accent, visualization/track]
+
+  - id: primitive.tooltip
+    name: Tooltip
+    status: prototype
+    properties:
+      content: required
+      children: required
+      delay: { type: number, default: 350 }
+    states: [closed, delayed-open, open]
+    rules:
+      - Открывается по hover и keyboard focus, закрывается при уходе указателя, blur или Escape.
+      - Контейнер имеет role tooltip, а trigger получает aria-describedby только в открытом состоянии.
+      - Рендерится через portal и выбирает положение сверху или снизу без выхода за viewport.
+      - Не содержит интерактивных элементов и не перемещает фокус с trigger.
+      - Использует постоянную тёмную поверхность и светлый текст без инверсии между темами.
+    tokens: [component/tooltip/surface, component/tooltip/content, spacing/4, spacing/6, spacing/8, radius/md]
+
+  - id: primitive.stack
+    name: Stack
+    status: prototype
+    properties:
+      direction: vertical
+      gap: [4, 6, 8, 12, 16, 20, 24, 32]
+    rules:
+      - Управляет расстоянием между дочерними блоками, но не их внутренними отступами.
+      - Пустые группы не должны создаваться и влиять на вертикальный ритм.
+    tokens: [spacing/4, spacing/6, spacing/8, spacing/12, spacing/16, spacing/20, spacing/24, spacing/32]
+
+  - id: primitive.checkbox
+    name: Checkbox
+    status: prototype
+    properties:
+      size: [sm, md]
+      states: [unchecked, checked, indeterminate]
+      disabled: [true, false]
+    rules:
+      - Использует нативный input и сохраняет клавиатурное управление.
+      - Indeterminate задается отдельным свойством и синхронизируется с DOM.
+      - В формах визуальный контрол 20×20 помещается в label с интерактивной областью не менее 44×44.
+      - Readonly не поддерживается; для запрета изменения используется disabled.
+    tokens: [selection-control/*]
+
+  - id: primitive.radio
+    name: Radio
+    status: prototype
+    properties:
+      states: [unchecked, checked]
+      disabled: [true, false]
+    rules:
+      - Используется в группе элементов с одинаковым name.
+      - Использует нативный input и сохраняет клавиатурное управление.
+      - В формах визуальный контрол 20×20 помещается в label с интерактивной областью не менее 44×44.
+      - Readonly не поддерживается; для запрета изменения используется disabled.
+    tokens: [selection-control/*]
+
+components:
+  - id: component.app-shell
+    name: App shell
+    status: prototype
+    builtFrom: [component.app-header, component.sidebar-nav]
+    properties:
+      sidebar: required
+      header: required
+      main: children
+      aside: optional
+    rules:
+      - Управляет только техническими областями приложения, но не продуктовым Workspace.
+      - Sidebar и aside являются слотами; их продуктовый контент собирается в приложении.
+      - Main не задает горизонтальные отступы — ими владеют вложенные компоненты.
+      - Минимальная ширина оболочки приложения — 320px.
+      - При ширине viewport меньше 1440px Aside скрывается, чтобы центральная область не переключала таблицу в пограничный горизонтальный overflow.
+      - При ширине viewport меньше 1024px Sidebar скрывается, а Main занимает всю доступную ширину.
+    tokens: [layout/sidebar/width, layout/aside/width, layout/appHeader/height, layout/mainContent/paddingBottom, surface/default, surface/subtle, border/default]
+
+  - id: component.sidebar-nav
+    name: Sidebar nav
+    status: prototype
+    properties:
+      sections: dynamic
+      activeItemId: optional
+      renderLink: optional
+    rules:
+      - Описывает структуру навигации, но не знает о продуктовых разделах консоли.
+      - Интеграция с роутером передается через renderLink.
+    builtFrom: [component.nav-link]
+    tokens: [text/secondary, spacing/4, spacing/8]
+
+  - id: component.nav-link
+    name: Nav link
+    status: prototype
+    builtFrom: [primitive.icon]
+    properties:
+      label: required
+      icon: optional
+      href: optional
+      active: [true, false]
+      disabled: [true, false]
+      renderLink: optional
+    states: [default, hover, active, disabled]
+    rules:
+      - Не знает о роутере; интеграция передается через renderLink.
+      - Активное состояние отражает текущий маршрут, а не действие пользователя.
+    tokens: [nav-link/*, state/hover, state/selected, border/thin, text/primary]
+
+  - id: component.sidebar-context-switcher
+    name: Sidebar context switcher
+    status: prototype
+    builtFrom: [primitive.button, primitive.icon]
+    properties:
+      workspace: required
+      project: required
+      serviceLabel: optional
+    rules:
+      - Использует material-модель Button soft, но собственную геометрию sidebar.
+      - Использует единую высоту 48 px для двух строк контекста.
+      - Не содержит бизнес-логику выбора контекста; приложение передает данные и обработчик.
+    tokens: [sidebar-context-switcher/*, button/soft/surface, text/primary]
+
+  - id: component.context-path
+    name: Context path
+    status: prototype
+    properties:
+      items: dynamic
+      links: optional
+      control: optional
+      separator: [dot, "|", none]
+    rules:
+      - Последний элемент обозначает текущую страницу и не является ссылкой.
+      - Workspace и project передаются из runtime-контекста, текущая страница — из screen title.
+      - Для выбора проекта передайте интерактивный control в элемент пути; его доступное имя задаёт приложение.
+      - Разделитель можно переключить на вертикальную черту через separator="|" или убрать через separator="none".
+    tokens: [text/primary, text/tertiary, text/label/base/*, font/weight/medium, spacing/4]
+
+  - id: component.app-header
+    name: App header
+    status: prototype
+    builtFrom: [component.context-path]
+    properties:
+      context: required
+      actions: optional
+    tokens: [layout/appHeader/height, layout/content/inset, surface/default, spacing/12]
+
+  - id: component.page-header
+    name: Page header
+    status: prototype
+    builtFrom: [primitive.button]
+    properties:
+      title: required
+      meta: optional
+      actions: optional
+    styles: [heading/lg, caption/sm]
+    usedBy: [screen.compute.vm.list, screen.compute.vm.create]
+    tokens: [text/primary, text/secondary, layout/pageHeader/minHeight, layout/content/inset, spacing/4, spacing/8, spacing/12]
+
+  - id: component.metrics-summary
+    name: Metrics summary
+    status: prototype
+    builtFrom: [primitive.status, primitive.tooltip]
+    properties:
+      ariaLabel: required
+      items: dynamic
+      variant: [default, borderless]
+      itemTypes: [value, breakdown, meter, group]
+      valueAside: optional
+      asideTone: [positive, neutral, warning, danger]
+      asideIcon: optional
+      meterAppearance: [bar, ring, text]
+      groupIndicator: [activity]
+      groupAside: optional
+    rules:
+      - Не содержит видимого header; контекст задаётся соседним заголовком экрана или секции.
+      - ariaLabel обязательно именует сводку для ассистивных технологий.
+      - Text meter выводит вычисленный из level округлённый процент без графического индикатора.
+      - "Элементы строятся тремя строками: label, основное значение, вторичная информация; внутренний gap 6px."
+      - Label использует mono 12px, uppercase и приглушенный content приблизительно 40% от белого в темной теме.
+      - Каждый элемент использует одинаковый внутренний отступ 16px по вертикали и горизонтали.
+      - Borderless убирает фон, тень и внешнюю границу; между элементами использует одноцветный разделитель толщиной 1px на высоту содержимого элемента без учёта внутренних отступов с цветом border/thin. Каждый элемент получает отступы 24px по горизонтали и 12px по вертикали.
+      - Элементы group разделяются точкой 2×2px с отступом 8px до текста с обеих сторон.
+      - Вторичные подписи и счётчики breakdown используют Status; asideIcon включает иконочный маркер с геометрией Status.
+      - Группа статусов раскрывает один tooltip с отдельной строкой для каждого состояния.
+      - Preview показывает одну сводку; статические варианты документируются во вкладке Design.
+    usedBy: [screen.compute.vm.list]
+    styles: [label/mono]
+    tokens: [surface/default, surface/subtle, border/thin, text/primary, text/secondary, text/tertiary, status/*, visualization/*, metrics-summary/*, metric-indicator/*, spacing/4, spacing/8, spacing/10, spacing/16, spacing/20, radius/xl, size/4, size/6, size/20, size/32]
+
+  - id: component.dropdown-menu
+    name: Dropdown menu
+    status: prototype
+    builtFrom: [primitive.button, primitive.icon]
+    properties:
+      trigger: required
+      align: [start, end]
+      width: optional
+      itemLeading: optional
+      itemTrailing: optional
+      itemSelected: [true, false]
+      itemDestructive: [true, false]
+    states: [closed, open, hover, pressed, disabled, selected]
+    rules:
+      - Вся строка пункта является интерактивной областью.
+      - Выбранное состояние обозначается иконкой check в правом слоте.
+      - Специализированные меню могут использовать правый слот для другого статуса, например lock.
+      - Drag-поведение добавляется специализированным компонентом, а не базовым Dropdown menu.
+    tokens: [surface/default, state/hover, state/pressed, border/thin, text/primary, text/tertiary, elevation/medium, spacing/2, spacing/4, spacing/6, radius/md, radius/lg]
+
+  - id: component.data-table
+    name: Data table
+    status: prototype
+    builtFrom: [primitive.button, primitive.icon-button, primitive.checkbox, primitive.status, component.dropdown-menu]
+    properties:
+      states: [loading, empty, populated, error, forbidden]
+      selection: [none, single, multiple]
+      selectionColumnId: optional
+      columnManagement: [true, false]
+      initialHiddenColumnIds: optional
+      toolbarColumnControls: [menu, inline-items]
+      columnPinned: [none, start]
+      columnFill: [true, false]
+      stickyHeader: [true, false]
+      textCellSize: [default, compact]
+      meterCell: { value: number, limit: number, unit: string }
+      sorting: { column: opt-in, directions: [ascending, descending] }
+      overflowNavigation: [hidden, scroll-to-end, scroll-to-start]
+      mobileLayout: [cards]
+    rules:
+      - Управление видимостью и порядком колонок включается через columnManagement.
+      - initialHiddenColumnIds задает стартовый набор скрытых колонок; пользователь может вернуть их через управление колонками.
+      - Функция toolbar получает columnManager для отдельного меню и columnManagerItems для размещения тех же пунктов внутри собственного меню вида.
+      - Закрепленная колонка всегда видима и не меняет положение.
+      - Колонки с fill поровну делят свободную ширину таблицы, не нарушая собственный minWidth.
+      - Минимальная ширина таблицы вычисляется из minWidth видимых колонок и action-колонки; отдельного CSS-ограничения ширины у таблицы нет.
+      - "При viewport меньше 768px строки автоматически переходят в карточки: первая колонка становится заголовком, остальные получают подписи из header, а thead визуально скрывается."
+      - В мобильном режиме toolbar показывает поиск и фильтры; управление видом и колонками скрывается.
+      - Sticky-позиционирование и разделители появляются только при горизонтальном overflow.
+      - Ячейки body используют вертикальный padding 16px.
+      - Заголовки колонок используют mono 12px, uppercase и тот же приглушенный content, что labels в Metrics summary.
+      - Sticky header закрепляет toolbar сразу под App Header, а заголовок колонок — непосредственно под toolbar независимо от ширины и количества строк.
+      - Sticky-заголовок находится вне горизонтального body-scroller и синхронизируется с ним по горизонтали, поэтому его вертикальное позиционирование относится к основному scroll-контейнеру страницы.
+      - Meter cell показывает value из limit без графического индикатора и дополнительного процента.
+      - Сортировка включается для отдельных колонок через sortValue; активная колонка сообщает aria-sort.
+      - Неактивная Lucide-иконка сортировки 12px появляется при hover или keyboard focus, активная остаётся видимой.
+      - При горизонтальном overflow action-cell заголовка показывает IconButton перехода к правым колонкам и обратно.
+      - Copy action появляется при hover или focus конкретного копируемого значения, включая несколько значений внутри одной составной ячейки.
+      - Compact DataTextCell имеет минимальную высоту 24px и применяется в многострочных составных ячейках.
+    usedBy: [screen.compute.vm.list, screen.database.cluster.list]
+    styles: [label/mono]
+    tokens: [data-table/*, metric-indicator/*, surface/default, surface/subtle, state/hover, state/pressed, border/thin, text/primary, text/secondary, text/tertiary, text/disabled, status/*, visualization/*]
+
+  - id: component.form
+    name: Form layout
+    status: prototype
+    builtFrom: [primitive.button, primitive.text-field]
+    properties:
+      children: required
+      actions: optional
+      sections: dynamic
+    rules:
+      - Управляет группировкой полей и областью действий, но не хранит значения формы.
+      - Принимает стандартные атрибуты HTML form.
+    usedBy: [screen.compute.vm.create, screen.database.cluster.create]
+    tokens: [spacing/4, spacing/8, spacing/16, spacing/24, text/primary, text/secondary, border/thin]
+
+  - id: component.inline-alert
+    name: Inline alert
+    status: prototype
+    builtFrom: [primitive.button]
+    properties:
+      tone: [info, warning, danger, success]
+      actions: [none, one, two]
+    usedBy: [pattern.error.operation, pattern.error.quota]
+    tokens: [feedback/*, text/primary, text/secondary, radius/xl, spacing/4, spacing/8, spacing/16]
+    tokenGaps: []

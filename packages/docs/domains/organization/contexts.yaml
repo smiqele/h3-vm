@@ -1,0 +1,14 @@
+version: 0.1.0
+
+model:
+  user:
+    description: Пользователь платформы, который может администрировать Workspace и управлять Payment Account.
+  workspace:
+    description: Контекст проектов и потребления облачных ресурсов, закреплённый за администратором.
+    administeredBy: user
+  project:
+    description: Обязательный организационный контекст ресурсов внутри Workspace, без собственного платёжного аккаунта и баланса.
+    belongsTo: workspace
+  resource:
+    description: Принадлежит одному Project; контекст Workspace определяется через этот Project.
+    belongsTo: project

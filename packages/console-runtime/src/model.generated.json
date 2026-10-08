@@ -1,0 +1,1085 @@
+{
+  "navigation": {
+    "version": "0.1.0",
+    "sections": [
+      {
+        "id": "general",
+        "items": [
+          {
+            "id": "service.overview",
+            "label": "Обзор",
+            "icon": "layers",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.iam",
+            "label": "Команда и IAM",
+            "icon": "users",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.billing",
+            "label": "Биллинг",
+            "icon": "billing",
+            "lifecycle": "planned"
+          }
+        ]
+      },
+      {
+        "id": "compute",
+        "label": "Вычисление",
+        "items": [
+          {
+            "id": "service.compute.vm",
+            "label": "Виртуальные машины",
+            "icon": "server",
+            "lifecycle": "available",
+            "screen": "screen.compute.vm.list"
+          },
+          {
+            "id": "service.compute.images",
+            "label": "Образы и шаблоны",
+            "icon": "images",
+            "lifecycle": "planned"
+          }
+        ]
+      },
+      {
+        "id": "databases",
+        "label": "Базы данных",
+        "items": [
+          {
+            "id": "service.database.cluster",
+            "label": "Managed Databases",
+            "icon": "database",
+            "lifecycle": "prototype",
+            "screen": "screen.database.cluster.list"
+          }
+        ]
+      },
+      {
+        "id": "storage",
+        "label": "Хранение",
+        "items": [
+          {
+            "id": "service.storage.disks",
+            "label": "Диски",
+            "icon": "hard-drive",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.storage.snapshots",
+            "label": "Снапшоты и бэкапы",
+            "icon": "archive",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.storage.s3",
+            "label": "S3 Object Storage",
+            "icon": "disc",
+            "lifecycle": "planned"
+          }
+        ]
+      },
+      {
+        "id": "network",
+        "label": "Сети",
+        "items": [
+          {
+            "id": "service.network.vpc",
+            "label": "VPC и подсети",
+            "icon": "network",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.network.routes",
+            "label": "Маршруты и шлюзы",
+            "icon": "route",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.network.floating-ip",
+            "label": "Floating IP",
+            "icon": "server",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.network.security-groups",
+            "label": "Security Groups",
+            "icon": "shield",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.network.load-balancers",
+            "label": "Балансировщики",
+            "icon": "sparkles",
+            "lifecycle": "planned"
+          },
+          {
+            "id": "service.network.dns",
+            "label": "DNS-зоны",
+            "icon": "globe",
+            "lifecycle": "planned"
+          }
+        ]
+      }
+    ]
+  },
+  "contexts": {
+    "version": "0.1.0",
+    "model": {
+      "user": {
+        "description": "Пользователь платформы, который может администрировать Workspace и управлять Payment Account."
+      },
+      "workspace": {
+        "description": "Контекст проектов и потребления облачных ресурсов, закреплённый за администратором.",
+        "administeredBy": "user"
+      },
+      "project": {
+        "description": "Обязательный организационный контекст ресурсов внутри Workspace, без собственного платёжного аккаунта и баланса.",
+        "belongsTo": "workspace"
+      },
+      "resource": {
+        "description": "Принадлежит одному Project; контекст Workspace определяется через этот Project.",
+        "belongsTo": "project"
+      }
+    }
+  },
+  "resources": {
+    "version": "0.3.0",
+    "resources": [
+      {
+        "id": "resource.compute.vm",
+        "name": "Виртуальная машина",
+        "domain": "compute",
+        "fields": [
+          {
+            "id": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "status",
+            "type": "enum",
+            "values": [
+              "creating",
+              "running",
+              "stopping",
+              "stopped",
+              "starting",
+              "error",
+              "deleting"
+            ]
+          },
+          {
+            "id": "network",
+            "type": "string"
+          },
+          {
+            "id": "subnetIp",
+            "type": "string"
+          },
+          {
+            "id": "publicIp",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "id": "region",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "cpu",
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "id": "cpuUtilization",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          {
+            "id": "ramGb",
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "id": "ramUtilization",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          {
+            "id": "diskGb",
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "id": "diskLimitGb",
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "id": "image",
+            "type": "string"
+          }
+        ],
+        "operations": [
+          {
+            "id": "operation.compute.vm.create",
+            "permission": "compute.vm.create"
+          },
+          {
+            "id": "operation.compute.vm.start",
+            "permission": "compute.vm.update"
+          },
+          {
+            "id": "operation.compute.vm.stop",
+            "permission": "compute.vm.update"
+          },
+          {
+            "id": "operation.compute.vm.delete",
+            "permission": "compute.vm.delete",
+            "confirmation": "destructive"
+          }
+        ],
+        "transitions": [
+          {
+            "from": "creating",
+            "event": "provision-succeeded",
+            "to": "running"
+          },
+          {
+            "from": "creating",
+            "event": "provision-failed",
+            "to": "error"
+          },
+          {
+            "from": "running",
+            "event": "stop-requested",
+            "to": "stopping"
+          },
+          {
+            "from": "stopping",
+            "event": "stop-succeeded",
+            "to": "stopped"
+          },
+          {
+            "from": "stopped",
+            "event": "start-requested",
+            "to": "starting"
+          },
+          {
+            "from": "starting",
+            "event": "start-succeeded",
+            "to": "running"
+          },
+          {
+            "from": [
+              "running",
+              "stopped",
+              "error"
+            ],
+            "event": "delete-requested",
+            "to": "deleting"
+          }
+        ]
+      },
+      {
+        "id": "resource.database.cluster",
+        "name": "Кластер базы данных",
+        "domain": "database",
+        "fields": [
+          {
+            "id": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "status",
+            "type": "enum",
+            "values": [
+              "creating",
+              "running",
+              "maintenance",
+              "error",
+              "deleting"
+            ]
+          },
+          {
+            "id": "engine",
+            "type": "enum",
+            "values": [
+              "postgresql",
+              "mysql"
+            ]
+          },
+          {
+            "id": "engineVersion",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "region",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "patterns": {
+    "version": "0.3.0",
+    "patterns": [
+      {
+        "id": "pattern.resource-list",
+        "status": "prototype",
+        "name": "Список ресурсов",
+        "purpose": "Найти ресурс, оценить состояние и перейти к действию.",
+        "components": [
+          "component.page-header",
+          "component.data-table"
+        ],
+        "requiredStates": [
+          "loading",
+          "empty",
+          "populated",
+          "error",
+          "forbidden"
+        ]
+      },
+      {
+        "id": "pattern.resource-create",
+        "status": "prototype",
+        "name": "Создание ресурса",
+        "purpose": "Собрать параметры, проверить ограничения и запустить долгую операцию.",
+        "components": [
+          "component.page-header",
+          "component.form",
+          "component.inline-alert"
+        ],
+        "requiredStates": [
+          "ready",
+          "submitting",
+          "validation-error",
+          "api-error",
+          "quota-exceeded"
+        ]
+      },
+      {
+        "id": "pattern.error.field",
+        "status": "prototype",
+        "name": "Ошибка поля",
+        "scope": "field",
+        "recovery": "edit-input",
+        "components": [
+          "primitive.text-field"
+        ]
+      },
+      {
+        "id": "pattern.error.operation",
+        "status": "prototype",
+        "name": "Ошибка операции",
+        "scope": "operation",
+        "recovery": "retry-or-details",
+        "components": [
+          "component.inline-alert"
+        ]
+      },
+      {
+        "id": "pattern.error.quota",
+        "status": "prototype",
+        "name": "Превышение квоты",
+        "scope": "constraint",
+        "recovery": "change-request-or-request-quota",
+        "components": [
+          "component.inline-alert"
+        ]
+      },
+      {
+        "id": "pattern.vm-status-transition",
+        "status": "prototype",
+        "name": "Смена статуса виртуальной машины",
+        "purpose": "Показать отдельно от экрана переход ресурса и доступность действий.",
+        "resource": "resource.compute.vm",
+        "variants": [
+          {
+            "from": "running",
+            "intermediate": "stopping",
+            "to": "stopped",
+            "action": "operation.compute.vm.stop"
+          },
+          {
+            "from": "stopped",
+            "intermediate": "starting",
+            "to": "running",
+            "action": "operation.compute.vm.start"
+          },
+          {
+            "from": "running",
+            "intermediate": "deleting",
+            "to": "deleted",
+            "action": "operation.compute.vm.delete"
+          },
+          {
+            "from": "creating",
+            "intermediate": "creating",
+            "to": "error",
+            "action": "provision"
+          }
+        ],
+        "components": [
+          "primitive.status",
+          "component.inline-alert"
+        ]
+      }
+    ]
+  },
+  "journeys": {
+    "version": "0.3.0",
+    "journeys": [
+      {
+        "id": "cjm.compute.vm.first-create",
+        "name": "Первая виртуальная машина",
+        "actor": "Администратор Workspace",
+        "goal": "Создать работающую ВМ для приложения",
+        "stages": [
+          {
+            "id": "discover",
+            "name": "Ориентация",
+            "touchpoint": "screen.compute.vm.list",
+            "userGoal": "Понять состояние ресурсов Workspace и найти создание ВМ",
+            "questions": [
+              "Хватает ли квоты?",
+              "Есть ли уже подходящая ВМ?"
+            ],
+            "emotion": "neutral",
+            "signals": [
+              "resource-summary",
+              "empty-state"
+            ]
+          },
+          {
+            "id": "configure",
+            "name": "Настройка",
+            "touchpoint": "screen.compute.vm.create",
+            "userGoal": "Выбрать конфигурацию без превышения квоты",
+            "questions": [
+              "Какой размер выбрать?",
+              "Сколько это будет стоить?"
+            ],
+            "emotion": "uncertain",
+            "risks": [
+              "quota-exceeded",
+              "incompatible-configuration"
+            ]
+          },
+          {
+            "id": "wait",
+            "name": "Развертывание",
+            "touchpoint": "pattern.vm-status-transition",
+            "userGoal": "Убедиться, что процесс идет и не требует действий",
+            "questions": [
+              "Сколько ждать?",
+              "Можно ли уйти со страницы?"
+            ],
+            "emotion": "attentive",
+            "signals": [
+              "creating-status",
+              "progress-explanation"
+            ]
+          },
+          {
+            "id": "verify",
+            "name": "Проверка результата",
+            "touchpoint": "screen.compute.vm.list",
+            "userGoal": "Найти созданную ВМ и убедиться, что она работает",
+            "questions": [
+              "Как подключиться?",
+              "Что делать при ошибке?"
+            ],
+            "emotion": "positive",
+            "signals": [
+              "running-status",
+              "network-address"
+            ]
+          }
+        ],
+        "successMetrics": [
+          "create-flow-completion",
+          "time-to-running",
+          "quota-error-rate"
+        ]
+      }
+    ]
+  },
+  "fixtures": {
+    "version": "0.3.0",
+    "fixtures": {
+      "fixture.vm.loading": {
+        "status": "loading",
+        "data": null
+      },
+      "fixture.vm.empty": {
+        "status": "success",
+        "data": []
+      },
+      "fixture.vm.default": {
+        "status": "success",
+        "metricsSummaries": {
+          "state": {
+            "ariaLabel": "Состояние виртуальных машин",
+            "variant": "borderless",
+            "items": [
+              {
+                "id": "instances",
+                "type": "breakdown",
+                "label": "Инстансы",
+                "value": "6",
+                "segments": [
+                  {
+                    "tone": "positive",
+                    "value": "3",
+                    "label": "Работают"
+                  },
+                  {
+                    "tone": "neutral",
+                    "value": "2",
+                    "label": "Остановлены"
+                  },
+                  {
+                    "tone": "danger",
+                    "value": "1",
+                    "label": "С ошибкой"
+                  }
+                ]
+              },
+              {
+                "id": "utilization",
+                "type": "group",
+                "label": "Загрузка",
+                "aside": "В пределах нормы",
+                "asideTone": "positive",
+                "asideIcon": "check",
+                "items": [
+                  {
+                    "id": "cpu",
+                    "label": "CPU",
+                    "value": "43%"
+                  },
+                  {
+                    "id": "ram",
+                    "label": "RAM",
+                    "value": "35%"
+                  }
+                ]
+              },
+              {
+                "id": "disk",
+                "type": "meter",
+                "appearance": "text",
+                "label": "Хранение",
+                "value": "1,7 ТБ из 1,9 ТБ",
+                "level": 0.895,
+                "aside": "Заполнено на",
+                "asideTone": "warning",
+                "asideIcon": "triangle-alert"
+              },
+              {
+                "id": "accrued",
+                "type": "value",
+                "label": "Потребление",
+                "value": "18 420 ₽",
+                "aside": "1–18 сентября"
+              }
+            ]
+          }
+        },
+        "data": [
+          {
+            "id": "VM-V9H2C4T5B",
+            "name": "hot-server-name",
+            "status": "running",
+            "statusChangedAt": "2026-09-03T10:00:00+03:00",
+            "network": "production-subnet-a",
+            "subnetIp": "10.0.0.29",
+            "publicIp": "185.45.10.21",
+            "cpu": 8,
+            "cpuUtilization": 0.43,
+            "ramGb": 32,
+            "ramUtilization": 0.38,
+            "diskGb": 350,
+            "diskLimitGb": 400,
+            "image": "Ubuntu 24.04 LTS",
+            "healthSignals": [
+              {
+                "text": "Высокий исходящий трафик",
+                "tone": "warning",
+                "icon": "trending-up"
+              },
+              {
+                "text": "Копия создана 2 ч. назад",
+                "tone": "neutral",
+                "icon": "archive"
+              }
+            ]
+          },
+          {
+            "id": "VM-X7R8Q9L3P",
+            "name": "cold-server-alpha",
+            "status": "stopped",
+            "statusChangedAt": "2026-09-14T23:10:00+03:00",
+            "network": "development-subnet-a",
+            "subnetIp": "10.0.0.35",
+            "cpu": 4,
+            "cpuUtilization": 0.08,
+            "ramGb": 16,
+            "ramUtilization": 0.22,
+            "diskGb": 250,
+            "diskLimitGb": 280,
+            "image": "Debian 12",
+            "healthSignals": [
+              {
+                "text": "Мониторинг приостановлен",
+                "tone": "neutral",
+                "icon": "network"
+              },
+              {
+                "text": "Резервная копия актуальна",
+                "tone": "neutral",
+                "icon": "archive"
+              }
+            ]
+          },
+          {
+            "id": "VM-J2K4N6M8Z",
+            "name": "backup-node-21",
+            "status": "error",
+            "statusChangedAt": "2026-09-15T02:10:00+03:00",
+            "network": "storage-subnet-a",
+            "subnetIp": "10.0.0.42",
+            "cpu": 2,
+            "cpuUtilization": 0.31,
+            "ramGb": 8,
+            "ramUtilization": 0.45,
+            "diskGb": 100,
+            "diskLimitGb": 120,
+            "image": "Rocky Linux 9",
+            "healthSignals": [
+              {
+                "text": "Ошибка резервного копирования",
+                "tone": "danger",
+                "icon": "archive"
+              },
+              {
+                "text": "Агент недоступен",
+                "tone": "warning",
+                "icon": "network"
+              }
+            ]
+          },
+          {
+            "id": "VM-L5F7T9B0X",
+            "name": "db-server-prim",
+            "status": "running",
+            "statusChangedAt": "2026-09-10T17:40:00+03:00",
+            "network": "database-subnet-a",
+            "subnetIp": "10.0.0.55",
+            "publicIp": "185.45.10.34",
+            "cpu": 6,
+            "cpuUtilization": 0.48,
+            "ramGb": 24,
+            "ramUtilization": 0.56,
+            "diskGb": 300,
+            "diskLimitGb": 500,
+            "image": "Ubuntu 22.04 LTS"
+          },
+          {
+            "id": "VM-M3V1E4R9S",
+            "name": "web-node-02",
+            "status": "running",
+            "statusChangedAt": "2026-09-14T08:00:00+03:00",
+            "network": "production-subnet-b",
+            "subnetIp": "10.0.0.23",
+            "cpu": 4,
+            "cpuUtilization": 0.52,
+            "ramGb": 16,
+            "ramUtilization": 0.46,
+            "diskGb": 300,
+            "diskLimitGb": 340,
+            "image": "Debian 12",
+            "healthSignals": [
+              {
+                "text": "Требуется перезагрузка",
+                "tone": "warning",
+                "icon": "triangle-alert"
+              },
+              {
+                "text": "Копия создана 6 ч. назад",
+                "tone": "neutral",
+                "icon": "archive"
+              }
+            ]
+          },
+          {
+            "id": "VM-Q8Z6P2L7N",
+            "name": "cache-server-11",
+            "status": "stopped",
+            "statusChangedAt": "2026-09-12T12:30:00+03:00",
+            "network": "database-subnet-a",
+            "subnetIp": "10.0.0.31",
+            "cpu": 4,
+            "cpuUtilization": 0.12,
+            "ramGb": 16,
+            "ramUtilization": 0.34,
+            "diskGb": 250,
+            "diskLimitGb": 260,
+            "image": "AlmaLinux 9",
+            "healthSignals": [
+              {
+                "text": "Копия устарела",
+                "tone": "warning",
+                "icon": "archive"
+              },
+              {
+                "text": "Диск почти заполнен",
+                "tone": "warning",
+                "icon": "triangle-alert"
+              }
+            ]
+          }
+        ]
+      },
+      "fixture.vm.error": {
+        "status": "error",
+        "error": {
+          "code": "service_unavailable"
+        }
+      },
+      "fixture.vm.create-ready": {
+        "status": "ready",
+        "values": {
+          "region": "ru-1",
+          "cpu": 2,
+          "ramGb": 4,
+          "diskGb": 50
+        }
+      },
+      "fixture.vm.create-submitting": {
+        "status": "submitting"
+      },
+      "fixture.vm.create-invalid": {
+        "status": "invalid",
+        "errors": {
+          "name": "required"
+        }
+      },
+      "fixture.vm.create-error": {
+        "status": "error",
+        "error": {
+          "code": "quota_exceeded"
+        }
+      },
+      "fixture.context.default": {
+        "workspace": {
+          "id": "workspace.acme",
+          "name": "Acme Corp"
+        },
+        "project": {
+          "id": "project.production",
+          "name": "Production",
+          "workspaceId": "workspace.acme"
+        }
+      }
+    }
+  },
+  "screens": {
+    "version": "0.3.0",
+    "screens": [
+      {
+        "id": "screen.compute.vm.list",
+        "status": "prototype",
+        "title": "Виртуальные машины",
+        "route": "/compute/vms",
+        "resource": "resource.compute.vm",
+        "pattern": "pattern.resource-list",
+        "blocks": [
+          {
+            "id": "header",
+            "component": "component.page-header",
+            "props": {
+              "primaryAction": "operation.compute.vm.create",
+              "secondaryAction": "cli"
+            }
+          },
+          {
+            "id": "summary-state",
+            "component": "component.metrics-summary",
+            "props": {
+              "dataKey": "state"
+            }
+          },
+          {
+            "id": "table",
+            "component": "component.data-table",
+            "props": {
+              "selection": "multiple",
+              "selectionColumnId": "name",
+              "searchFields": [
+                "name",
+                "id",
+                "network",
+                "subnetIp",
+                "publicIp"
+              ],
+              "statusField": "status",
+              "statusOptions": [
+                "running",
+                "stopped",
+                "creating",
+                "error"
+              ],
+              "columns": [
+                {
+                  "field": "name",
+                  "label": "Имя",
+                  "kind": "link",
+                  "href": "/compute/vms/{id}",
+                  "copyable": true,
+                  "sortable": true,
+                  "width": 180,
+                  "inset": "compact",
+                  "pinned": "start"
+                },
+                {
+                  "field": "status",
+                  "label": "Статус",
+                  "kind": "status",
+                  "statusResource": "virtual-machine",
+                  "sortable": true,
+                  "width": 140,
+                  "inset": "compact"
+                },
+                {
+                  "field": "id",
+                  "label": "ID",
+                  "kind": "text",
+                  "copyable": true,
+                  "width": 170,
+                  "inset": "compact"
+                },
+                {
+                  "field": "network",
+                  "label": "Подсеть",
+                  "kind": "text",
+                  "copyable": true,
+                  "width": 160
+                },
+                {
+                  "field": "subnetIp",
+                  "label": "IP подсети",
+                  "kind": "text",
+                  "copyable": true,
+                  "width": 132
+                },
+                {
+                  "field": "publicIp",
+                  "label": "Публичный IP",
+                  "kind": "text",
+                  "copyable": true,
+                  "width": 132
+                },
+                {
+                  "field": "cpu",
+                  "label": "vCPU",
+                  "kind": "text",
+                  "unit": "vCPU",
+                  "sortable": true,
+                  "width": 120
+                },
+                {
+                  "field": "ramGb",
+                  "label": "RAM",
+                  "kind": "text",
+                  "unit": "ГБ RAM",
+                  "sortable": true,
+                  "width": 120
+                },
+                {
+                  "field": "diskGb",
+                  "label": "Диск",
+                  "kind": "meter",
+                  "limitField": "diskLimitGb",
+                  "unit": "ГБ",
+                  "metricLabel": "Место на диске",
+                  "sortable": true,
+                  "width": 180
+                },
+                {
+                  "field": "image",
+                  "label": "Образ",
+                  "kind": "text",
+                  "width": 180
+                }
+              ]
+            }
+          }
+        ],
+        "states": {
+          "loading": "fixture.vm.loading",
+          "empty": "fixture.vm.empty",
+          "populated": "fixture.vm.default",
+          "error": "fixture.vm.error"
+        },
+        "documentation": "domains/compute/virtual-machines"
+      },
+      {
+        "id": "screen.compute.vm.create",
+        "status": "prototype",
+        "title": "Создание виртуальной машины",
+        "route": "/compute/vms/create",
+        "resource": "resource.compute.vm",
+        "pattern": "pattern.resource-create",
+        "blocks": [
+          {
+            "id": "header",
+            "component": "component.page-header"
+          },
+          {
+            "id": "form",
+            "component": "component.form",
+            "props": {
+              "fields": [
+                "name",
+                "region",
+                "cpu",
+                "ramGb",
+                "diskGb"
+              ]
+            }
+          }
+        ],
+        "states": {
+          "ready": "fixture.vm.create-ready",
+          "submitting": "fixture.vm.create-submitting",
+          "validation-error": "fixture.vm.create-invalid",
+          "api-error": "fixture.vm.create-error"
+        },
+        "documentation": "domains/compute/virtual-machines"
+      },
+      {
+        "id": "screen.database.cluster.list",
+        "status": "prototype",
+        "title": "Базы данных",
+        "route": "/databases",
+        "resource": "resource.database.cluster",
+        "pattern": "pattern.resource-list",
+        "blocks": [
+          {
+            "id": "header",
+            "component": "component.page-header"
+          },
+          {
+            "id": "table",
+            "component": "component.data-table",
+            "props": {
+              "selection": "multiple",
+              "selectionColumnId": "name",
+              "searchFields": [
+                "name",
+                "id",
+                "engine",
+                "region"
+              ],
+              "statusField": "status",
+              "statusOptions": [
+                "running",
+                "creating",
+                "maintenance",
+                "error"
+              ],
+              "columns": [
+                {
+                  "field": "name",
+                  "label": "Имя",
+                  "kind": "link",
+                  "href": "/databases/{id}",
+                  "copyable": true,
+                  "width": 200,
+                  "inset": "compact",
+                  "pinned": "start"
+                },
+                {
+                  "field": "status",
+                  "label": "Статус",
+                  "kind": "status",
+                  "statusResource": "database-cluster",
+                  "width": 150,
+                  "inset": "compact"
+                },
+                {
+                  "field": "id",
+                  "label": "ID",
+                  "kind": "text",
+                  "copyable": true,
+                  "width": 180,
+                  "inset": "compact"
+                },
+                {
+                  "field": "engine",
+                  "label": "Движок",
+                  "kind": "text",
+                  "width": 130
+                },
+                {
+                  "field": "engineVersion",
+                  "label": "Версия",
+                  "kind": "text",
+                  "width": 120
+                },
+                {
+                  "field": "region",
+                  "label": "Регион",
+                  "kind": "text",
+                  "width": 120
+                }
+              ]
+            }
+          }
+        ],
+        "documentation": "domains/databases/managed-databases"
+      },
+      {
+        "id": "screen.database.cluster.create",
+        "status": "prototype",
+        "title": "Создание базы данных",
+        "route": "/databases/create",
+        "resource": "resource.database.cluster",
+        "pattern": "pattern.resource-create",
+        "blocks": [
+          {
+            "id": "header",
+            "component": "component.page-header"
+          },
+          {
+            "id": "form",
+            "component": "component.form"
+          }
+        ],
+        "documentation": "domains/databases/managed-databases"
+      }
+    ]
+  }
+}
