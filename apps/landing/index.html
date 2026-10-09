@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="h3llo cloud — быстрые виртуальные машины">
+  <title>h3llo cloud — виртуальные машины</title>
+  <link rel="icon" href="/media/logo.svg">
+  <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+<main class="page" data-stage="intro">
+  <section class="hero-stage">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="h3llo cloud — главная"><img src="/media/logo.svg" alt="h3llo cloud"></a>
+      <div class="header-right"><span class="availability"><i></i>Все сервисы доступны</span><button class="btn btn-soft" disabled>В консоль</button></div>
+    </header>
+    <div class="hero" id="top">
+      <div class="hero-copy">
+        <h1>быстрые виртуальные<span class="second-line">машины для ваших <span class="word-slot" aria-live="polite"><span class="rotating-word">проектов</span></span></span></h1>
+        <p>Intel Xeon 5/6, GPU, DDR5, бэкапы и поддержка 24/7<br>Без лишних сервисов и сложных условий</p>
+        <div class="hero-actions"><button class="btn btn-primary" disabled>Сразу в консоль</button><a class="btn btn-soft" href="#calculator">Потыкать калькулятор</a></div>
+      </div>
+      <div class="server-stack" aria-label="Ваши виртуальные серверы">
+        <article class="server-card card-one"><div class="card-top"><span><i class="status-dot"></i>performance-server-alpha</span><span class="card-ip"><img src="/media/globe.svg" alt="">185.45.10.21</span></div><div class="card-bottom"><span><img src="/media/cpu.svg" alt="">8 vCPU　<img src="/media/memory.svg" alt="">24 ГБ RAM　<img src="/media/disk.svg" alt="">1 ТБ SSD</span><b>8 576 ₽ / мес</b></div></article>
+        <article class="server-card card-two"><div class="card-top"><span><i class="status-dot"></i>postgres-db-2099</span><span class="card-ip"><img src="/media/globe.svg" alt="">185.45.10.22</span></div><div class="card-bottom"><span><img src="/media/cpu.svg" alt="">4 vCPU　<img src="/media/memory.svg" alt="">16 ГБ RAM　<img src="/media/disk.svg" alt="">500 ГБ SSD</span><b>5 390 ₽ / мес</b></div></article>
+        <article class="server-card card-three"><div class="card-top"><span><i class="status-dot"></i>worker-node-03</span><span class="card-ip"><img src="/media/globe.svg" alt="">185.45.10.23</span></div><div class="card-bottom"><span><img src="/media/cpu.svg" alt="">2 vCPU　<img src="/media/memory.svg" alt="">8 ГБ RAM　<img src="/media/disk.svg" alt="">160 ГБ SSD</span><b>2 590 ₽ / мес</b></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="calculator" id="calculator">
+    <header class="section-heading"><h2>соберите свой сервер</h2><p>Платишь только за использованные ресурсы. С точностью до секунды</p></header>
+    <div class="configuration">
+      <div class="chips" aria-label="Уровень конфигурации"></div>
+      <div class="calc-layout">
+        <div class="resources">
+          <div class="resource" data-resource="cpu"><span class="resource-label">CPU</span><div class="step-scale"><span class="step-marks"></span><span class="active-step"></span><span class="block block-left"></span><span class="active-area"></span><input type="range" aria-label="CPU"></div><div class="resource-controls"><output></output><button class="adjust minus" aria-label="Уменьшить CPU"><img src="/media/minus.svg" alt=""></button><button class="adjust plus" aria-label="Увеличить CPU"><img src="/media/plus.svg" alt=""></button></div></div>
+          <div class="resource" data-resource="ram"><span class="resource-label">RAM</span><div class="step-scale ram-scale"><span class="step-marks"></span><span class="active-step"></span><span class="block block-left"></span><span class="block block-right"></span><span class="active-area"></span><input type="range" aria-label="RAM"></div><div class="resource-controls"><output></output><button class="adjust minus" aria-label="Уменьшить RAM"><img src="/media/minus.svg" alt=""></button><button class="adjust plus" aria-label="Увеличить RAM"><img src="/media/plus.svg" alt=""></button></div></div>
+          <div class="resource" data-resource="disk"><span class="resource-label">SSD</span><div class="step-scale ssd-scale"><span class="step-marks"></span><span class="active-step"></span><input type="range" aria-label="SSD"></div><div class="resource-controls"><output></output><button class="adjust minus" aria-label="Уменьшить SSD"><img src="/media/minus.svg" alt=""></button><button class="adjust plus" aria-label="Увеличить SSD"><img src="/media/plus.svg" alt=""></button></div></div>
+          <label class="switch-row"><input id="gpu" type="checkbox"><span class="switch"><i></i></span><span>GPU 16 ГБ</span></label>
+          <label class="switch-row"><input id="backups" type="checkbox" checked><span class="switch"><i></i></span><span>Авто бэкапы</span></label>
+        </div>
+        <aside class="summary"><div class="periods"><button data-period="month" class="selected">Месяц</button><button data-period="year">Год</button><button data-period="day">День</button></div><output class="total"></output><div class="specs"></div><button class="btn btn-primary launch">Запустить</button></aside>
+      </div>
+    </div>
+    <p class="notice" hidden>Конфигурация подготовлена. Запуск сервера в прототипе пока недоступен.</p>
+  </section>
+
+  <section class="infrastructure"><div class="two-col"><h2>на чём стоим<br>буквально</h2><div class="info-cards">
+    <article><h3>Топовое железо</h3><p>Xeon 5/6, DDR5, GPU B300, сети 400G/800G.<br>Не просто современное, а новейшее.</p></article>
+    <article><h3>Суверенность</h3><p>Реестр отечественного ПО, аккредитация Минцифры,<br>Реестр хостингов РКН, серверы в РФ.</p></article>
+    <article><h3>Надёжность</h3><p>SLA 99,97% для одиночного сервиса / 99,99% для HA-конфигураций.<br>Финансовая гарантия до 100%.</p></article>
+    <article><h3>Kubernetes-платформа</h3><p>Собственная разработка с нативной поддержкой экосистемы CNCF.<br>Не форк, не вендорский конструктор.</p></article>
+    <article><h3>400G+</h3><p>Сетевая связность</p></article>
+    <article><h3>Безопасность</h3><p>Датацентры Tier III+, ФЗ-152, ФСТЭК, PCI DSS, Cloud Alliance, собственный стандарт ИБ.</p></article>
+  </div></div></section>
+  <section class="support"><div class="two-col support-inner"><h2>24/7</h2><div><p class="lead">Вопросы возникают в любое время.<br>Мы это учитываем.</p><p>Отвечают люди, не боты. Шутка, боты тоже отвечают, только умные. Круглосуточная поддержка с понятными каналами связи, границами помощи и порядком работы с обращениями.</p></div></div></section>
+  <section class="final-cta"><span class="ascii-hand hand-left" aria-hidden="true"><video src="/media/ascii-hand.mp4" muted loop playsinline preload="auto"></video><canvas></canvas></span><span class="ascii-hand hand-right" aria-hidden="true"><video src="/media/ascii-hand.mp4" muted loop playsinline preload="auto"></video><canvas></canvas></span><div class="final-content"><h2>Инстансы ждут, ты готов?</h2><p>Зарегистрируйтесь — и 4 000 ₽ появятся на балансе автоматически. Попробуйте сами, почему люди перестают возвращаться к старым облакам.</p><div><button class="btn btn-primary">Попробовать бесплатно</button><button class="btn btn-soft">Поговорить с командой</button></div></div></section>
+  <footer><div class="footer-top"><div class="footer-brand"><img src="/media/footer-logo.svg" alt="h3llo.cloud"><p>Строим облачный<br>гиперскейлер на<br>максималках</p></div><div class="footer-links"><div><h2>Юридическая информация</h2><a href="#">Лицензионное соглашение</a><a href="#">Политика конфиденциальности</a><a href="#">Политика использования файлов Cookie</a><a href="#">Оферта для юридических лиц</a><a href="#">Оферта акции «Бесплатные лимиты»</a></div><div><h2>Поддержка</h2><a href="#">Центр помощи</a><a href="#">Статус системы</a></div></div></div><p class="copyright">h3llo.cloud © 2025 Все права защищены</p></footer>
+</main>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

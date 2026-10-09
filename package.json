@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev:design-lab",
+    "dev": "npm run dev:landing",
     "dev:brand": "npm run dev --workspace @cloud/brand",
     "dev:design-lab": "npm run packages:generate && npm run tokens:generate && npm run dev --workspace @cloud/design-lab",
     "storybook": "npm run packages:generate && npm run tokens:generate && npm run storybook --workspace @cloud/storybook",
@@ -17,7 +17,10 @@
     "packages:generate": "node scripts/generate-package-data.mjs",
     "tokens:generate": "node scripts/generate-token-css.mjs",
     "docs:check": "node scripts/validate-component-docs.mjs",
-    "check": "npm run packages:generate && npm run tokens:generate && npm run typecheck --workspace @cloud/design-lab && npm run typecheck --workspace @cloud/prototypes && npm run typecheck --workspace @cloud/brand && node scripts/validate-specs.mjs && npm run docs:check && node scripts/check-contrast.mjs"
+    "check": "npm run packages:generate && npm run tokens:generate && npm run typecheck --workspace @cloud/design-lab && npm run typecheck --workspace @cloud/prototypes && npm run typecheck --workspace @cloud/brand && node scripts/validate-specs.mjs && npm run docs:check && node scripts/check-contrast.mjs",
+    "dev:landing": "npm run dev --workspace @cloud/landing",
+    "build:landing": "npm run build --workspace @cloud/landing",
+    "preview:landing": "npm run preview --workspace @cloud/landing"
   },
   "devDependencies": {
     "@types/node": "latest",
