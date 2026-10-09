@@ -21,6 +21,22 @@
   document.fonts.ready.then(sizeWord); addEventListener('resize',sizeWord);
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{wordNode.classList.add('out');setTimeout(()=>{word=(word+1)%words.length;wordNode.textContent=words[word];wordNode.classList.remove('out');sizeWord()},300)},3200);
 
+  const serverCards=$$('.server-card');
+  const rotateServerCards=()=>{
+    const topCard=serverCards.find(card=>card.dataset.slot==='0');
+    if(!topCard)return;
+    topCard.classList.add('is-leaving');
+    serverCards.forEach(card=>{
+      const slot=Number(card.dataset.slot);
+      if(slot>0)card.dataset.slot=String(slot-1);
+    });
+    setTimeout(()=>{
+      topCard.dataset.slot=String(serverCards.length-1);
+      topCard.classList.remove('is-leaving');
+    },720);
+  };
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(rotateServerCards,2800);
+
   const chips=$('.chips');
   presets.forEach((p,i)=>{const b=document.createElement('button');b.className='chip';b.innerHTML=`${p.label}<img src="/media/${p.icon}" alt="">`;b.onclick=()=>{state.cpu=p.cpu;state.ram=p.ram;state.disk=p.disk;render()};chips.append(b)});
   const els={cpu:$('[data-resource=cpu]'),ram:$('[data-resource=ram]'),disk:$('[data-resource=disk]')};
